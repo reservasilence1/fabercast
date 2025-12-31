@@ -1,0 +1,240 @@
+/* Exemplo de reset de CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0px 20px 30px;
+    text-align: center;
+}
+
+.header {
+    background-color: #da0029;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #000000;
+    ;
+}
+
+.header img {
+    width: 150px;
+    margin: 20px 0px;
+}
+
+.valor-desconto{
+   display: flex;
+   justify-content:end;
+   color: red;
+  
+}
+
+.valor-total{
+    display: flex;
+    justify-content:end;
+    color: green;
+}
+
+.valor-total p{
+    font-weight: bold;
+    margin: 0px;
+}
+
+.valor-desconto p{
+    font-weight: bold;
+}
+.titllee {
+    font-size: 16px;
+    display: flex;
+    text-align: center;
+    margin-top: 30px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.popUp-dica {
+    background-color: #dfdfdf;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(114, 114, 114);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    bottom: 500px;
+    margin: 20px;
+  
+}
+
+.dica-p  {
+    font-weight: 400;
+}
+.dica-errado{
+    font-weight: 800;
+}
+
+.selecione-resposta {
+    background-color: #dfdfdf;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(114, 114, 114);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    bottom: 400px;
+    margin: 20px;
+  
+}
+
+.selecione-resposta-p {
+    font-weight: 800;
+
+}
+
+
+.opacity {
+    opacity: 0.3;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    background-color: #da0029;
+    z-index: -1;
+}
+
+
+
+.content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(114, 114, 114);
+}
+
+.btn {
+    background-color: #da0029;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    /* Suaviza a transição */
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: #da0029;
+}
+
+.options {
+    margin-top: 20px;
+}
+
+.btn {
+    background-color:#da0029;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    /* Suaviza a transição */
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.options button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000000
+    ;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 20px;
+    font-size: 17px;
+}
+
+/* Estilo para o botão correto quando selecionado */
+.options button.correct-selected {
+    background-color: green;
+    color: white;
+    opacity: 0.6;
+}
+
+/* Estilo para o botão incorreto quando selecionado */
+.options button.incorrect-selected {
+    background-color: red;
+    color: white;
+    opacity: 0.4;
+}
+
+/* Estilo padrão para botão, removendo a necessidade de :focus */
+.options button {
+    outline: none;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Estilos padrões para os botões */
+.option {
+    background-color: #f4f4f4;
+    color: black;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Suaviza a transição */
+}
+
+.btn-resgate{
+    
+    text-decoration: none;
+}
+
+.p-resgate{
+    margin-bottom: 30px;
+    
+}
