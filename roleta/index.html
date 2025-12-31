@@ -17,7 +17,7 @@
       text-align: center;
     }
 
-    /* HEADER CENTRALIZADO E MAIOR */
+    /* HEADER */
     .header {
       width: 100%;
       background: #DA0029;
@@ -37,13 +37,36 @@
       }
     }
 
+    /* TEXTO DO EVENTO */
     .logo-evento {
-      margin: 50px 0;
+      margin: 40px 20px 30px;
     }
 
-    .logo-evento img {
-      max-width: 160px;
-      height: auto;
+    .logo-evento h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #DA0029;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .logo-evento p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #444;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 768px) {
+      .logo-evento h1 {
+        font-size: 30px;
+      }
+
+      .logo-evento p {
+        font-size: 17px;
+      }
     }
 
     .roleta-wrapper {
@@ -61,7 +84,7 @@
       height: 0;
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
-      border-bottom: 30px solid #f80030;
+      border-bottom: 30px solid #DA0029;
       z-index: 2;
     }
 
@@ -150,7 +173,6 @@
       font-size: 15px;
       font-weight: bold;
       box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
     }
 
     .btn-resgatar,
@@ -192,9 +214,10 @@
     <img src="/roleta/images/logo.png" alt="Logo Faber-Castell">
   </div>
 
-  <!-- LOGO EVENTO -->
+  <!-- TEXTO DO EVENTO -->
   <div class="logo-evento">
-    <img src="/roleta/images/96anosbanner.png" alt="Logo do Evento">
+    <h1>Gire a roleta e resgate seu desconto de Volta às Aulas</h1>
+    <p>Garanta até <strong>80% de desconto</strong> em todos os kits Faber Castell na promoção de Volta às Aulas.</p>
   </div>
 
   <!-- ROLETA -->
