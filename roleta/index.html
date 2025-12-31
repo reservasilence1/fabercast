@@ -1,10 +1,15 @@
-<!DOCTYPE html><html lang="pt-br"><head>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loja Faber-Castell</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Sora', sans-serif;
       background: #fffdf5;
@@ -12,32 +17,28 @@
       text-align: center;
     }
 
+    /* HEADER CENTRALIZADO E MAIOR */
     .header {
       width: 100%;
       background: #f80030;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 12px 16px;
+      padding: 20px 20px;
     }
 
-    .header img { height: 28px; }
-
-    .header-icons {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .header img {
+      height: 40px;
     }
 
-    .header-icons .icon-header {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-      cursor: pointer;
+    @media (min-width: 768px) {
+      .header img {
+        height: 48px;
+      }
     }
 
     .logo-evento {
-      margin: 50px 0 50px;
+      margin: 50px 0;
     }
 
     .logo-evento img {
@@ -152,22 +153,10 @@
       transition: all 0.3s ease;
     }
 
-    .btn-resgatar {
-      background: #f80030;
-      color: white;
-    }
-
-    .btn-resgatar:hover {
-      background: #f80030;
-    }
-
+    .btn-resgatar,
     .btn-tentar {
       background: #f80030;
-      color: #fff;
-    }
-
-    .btn-tentar:hover {
-      background: #f80030;
+      color: white;
     }
 
     @keyframes fadeIn {
@@ -194,18 +183,16 @@
       z-index: 9998;
     }
   </style>
-  <!-- Meta Pixel Code -->
-
 </head>
+
 <body>
 
-  <!-- MENU -->
+  <!-- HEADER -->
   <div class="header">
     <img src="/roleta/images/logo.png" alt="Logo Faber-Castell">
-    </div>
   </div>
 
-  <!-- LOGO DO EVENTO -->
+  <!-- LOGO EVENTO -->
   <div class="logo-evento">
     <img src="/roleta/images/96anosbanner.png" alt="Logo do Evento">
   </div>
@@ -239,7 +226,7 @@
     </div>
   </div>
 
-  <!-- ÁUDIOS -->
+  <!-- AUDIOS -->
   <audio id="somGiro" src="/roleta/media/giro.mp3"></audio>
   <audio id="somErro" src="/roleta/media/erro.mp3"></audio>
   <audio id="somAcerto" src="/roleta/media/acerto.mp3"></audio>
@@ -248,7 +235,7 @@
   <canvas class="confetti" id="confettiCanvas"></canvas>
   <script src="/roleta/js/confetti.browser.min.js"></script>
 
-  <!-- SCRIPT DA ROLETA -->
+  <!-- SCRIPT ROLETA -->
   <script>
     const roleta = document.getElementById('roleta');
     const popup = document.getElementById('popupPremio');
@@ -269,37 +256,25 @@
       girando = true;
       chances--;
       chancesSpan.textContent = chances;
-
       somGiro.play();
 
       const giroExtra = 360 * 6;
-      let angleFinal = 0;
-
-      if (chances === 2) {
-        angleFinal = 135;
-      } else if (chances === 1) {
-        angleFinal = 203.99;
-      } else {
-        angleFinal = Math.random() * 360;
-      }
+      let angleFinal = chances === 2 ? 135 : chances === 1 ? 203.99 : Math.random() * 360;
 
       totalAngle += giroExtra + angleFinal;
-      roleta.style.transition = "transform 10s ease-out";
       roleta.style.transform = `rotate(${totalAngle}deg)`;
 
       setTimeout(() => {
-        setTimeout(() => {
-          if (chances === 2) {
-            somErro.play();
-            popupErro.style.display = "block";
-          } else if (chances === 1) {
-            somAcerto.play();
-            ativarConfetti();
-            popup.style.display = "block";
-          }
-          girando = false;
-        }, 1300);
-      }, 10000);
+        if (chances === 2) {
+          somErro.play();
+          popupErro.style.display = "block";
+        } else if (chances === 1) {
+          somAcerto.play();
+          ativarConfetti();
+          popup.style.display = "block";
+        }
+        girando = false;
+      }, 11300);
     }
 
     function fecharErro() {
@@ -307,10 +282,8 @@
     }
 
     function ativarConfetti() {
-      const canvas = document.getElementById('confettiCanvas');
-      const confetti = window.confetti.create(canvas, { resize: true });
-      const duration = 2000;
-      const end = Date.now() + duration;
+      const confetti = window.confetti.create(document.getElementById('confettiCanvas'), { resize: true });
+      const end = Date.now() + 2000;
 
       (function frame() {
         confetti({ particleCount: 5, spread: 60, origin: { y: 0.6 } });
@@ -319,11 +292,9 @@
     }
   </script>
 
-  <!-- ✅ RODAPÉ CORRETO -->
   <footer>
-    <strong>Faber Castell - Todos os direitos</strong><br>
+    <strong>Faber Castell - Todos os direitos</strong>
   </footer>
 
-
-
-</body></html>
+</body>
+</html>
