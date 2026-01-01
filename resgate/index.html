@@ -24,25 +24,27 @@
     :root{
       --red:#d40e28;
       --blue:#4a73b2;
-      --border:#e3e3e3;
+      --border:#e7e7e7;
       --muted:#6b7280;
       --star:#fab737;
+      --radius:12px;
+      --shadow: 0 2px 10px rgba(0,0,0,.06);
     }
 
     /* =========================
-       HEADER (igual layout do anexo, sem copiar marca)
+       HEADER (layout do anexo, clean)
     ========================== */
     .topbar-mini{
       background:#8f0f1f;
       color:#fff;
-      font-size:.9rem;
-      padding:.55rem 0;
+      font-size:.85rem;
+      padding:.5rem 0;
       text-align:center;
-      font-weight:600;
+      font-weight:500;
     }
     .header-main{
       background:var(--red);
-      padding:.7rem 0 .9rem;
+      padding:.65rem 0 .85rem;
       position:sticky;
       top:0;
       z-index:50;
@@ -62,10 +64,11 @@
     }
     .header-left i, .header-right i{
       color:#fff;
-      font-size:1.9rem;
+      font-size:1.85rem;
       line-height:1;
       cursor:pointer;
       user-select:none;
+      opacity:.95;
     }
     .header-logo{
       display:flex;
@@ -74,17 +77,16 @@
       flex:1;
     }
     .header-logo img{
-      height:40px;
+      height:38px;
       width:auto;
       display:block;
       user-select:none;
     }
-
     .header-search{
-      margin-top:.75rem;
+      margin-top:.7rem;
       background:#fff;
       border-radius:.45rem;
-      padding:.55rem .65rem;
+      padding:.52rem .65rem;
       display:flex;
       align-items:center;
       gap:.6rem;
@@ -93,76 +95,81 @@
       border:none;
       outline:none;
       width:100%;
-      font-size:.95rem;
-      font-weight:500;
+      font-size:.92rem;
+      font-weight:400;
       color:#111;
     }
     .header-search .bi-search{
       color:var(--red);
-      font-size:1.2rem;
+      font-size:1.15rem;
     }
 
     /* Banner */
-    .banner { margin: 0 auto; width: 1200px; max-width: 100%; }
-    .banner img { width: 100%; }
-
+    .banner{ margin:0 auto; width:1200px; max-width:100%; }
+    .banner img{ width:100%; }
     .desktop{ display:block; }
     .mobile{ display:none; }
     @media (max-width:575.98px){
       .desktop{ display:none !important; }
       .mobile{ display:block !important; }
-      .header-logo img{ height:36px; }
+      .header-logo img{ height:34px; }
     }
 
     /* =========================
-       TÍTULO MINIMALISTA (substitui contador)
+       TÍTULO MINIMALISTA
     ========================== */
     .hero-min{
-      margin: 0 auto;
-      width: 1200px;
-      max-width: 100%;
-      padding: 18px 10px 8px;
+      margin:0 auto;
+      width:1200px;
+      max-width:100%;
+      padding: 16px 10px 6px;
     }
     .hero-min h1{
-      font-size: 1.55rem;
-      font-weight: 800;
+      font-size: 1.2rem;
+      font-weight:600;
       margin:0;
-      letter-spacing:-.3px;
+      letter-spacing:-.1px;
     }
     .hero-min p{
       margin:.25rem 0 0;
-      color:#444;
-      font-size:.98rem;
-      font-weight:500;
+      color:#4b5563;
+      font-size:.92rem;
+      font-weight:400;
     }
 
     /* =========================
-       PRODUTOS (kits principais - mantém sua lógica)
+       GRID PRODUTOS (2 em 2, duas fileiras)
     ========================== */
     .produtos{
       margin: 0 auto;
       width: 1200px;
       max-width: 100%;
       padding: .5rem;
+      gap:10px;
     }
     .produto-one{
       display:flex;
       flex-direction:column;
       justify-content:space-between;
-      padding:.5rem;
-      border: solid var(--border) 1px;
-      border-radius:.5rem;
+      padding:.55rem;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
       width:48%;
       position:relative;
       background:#fff;
+      box-shadow: 0 1px 0 rgba(0,0,0,.02);
     }
-    .produto-one img{ width:100%; border-radius:.35rem; }
+    .produto-one img{
+      width:100%;
+      border-radius:10px;
+    }
     .produto-one h1{
-      font-size:.8rem;
-      line-height:1.2em;
+      font-size:.82rem;
+      line-height:1.25em;
       margin:0;
-      margin-top:.5rem;
-      font-weight:600;
+      margin-top:.55rem;
+      font-weight:500;
+      color:#111;
     }
 
     .btn-comprar{ width:100%; }
@@ -173,63 +180,69 @@
       border:none;
       padding:.55rem 0;
       color:#fff;
-      font-size:.85rem;
-      font-weight:800;
-      border-radius:.45rem;
+      font-size:.82rem;
+      font-weight:600;
+      border-radius:10px;
     }
-    button.esgotado{ opacity:.45; background:#bdbdbd !important; color:#fff; font-weight:800; }
+    button.esgotado{
+      opacity:.5;
+      background:#bdbdbd !important;
+      color:#fff;
+      font-weight:600;
+    }
+    @keyframes pulse{ 0%{transform:scale(1)} 50%{transform:scale(1.05)} 100%{transform:scale(1)} }
+    .pulse{ animation:pulse 1.6s infinite; }
+
     .produto-one a{ text-decoration:none; color:#111; }
 
-    @keyframes pulse{
-      0%{ transform:scale(1); }
-      50%{ transform:scale(1.06); }
-      100%{ transform:scale(1); }
-    }
-    .pulse{ animation:pulse 1.5s infinite; }
-
     .price span{
-      background-color:#2d5a35;
+      background:#2d5a35;
       color:#fff;
-      padding:0 .5rem;
-      font-size:.7rem;
-      border-radius:.3rem;
+      padding:0 .45rem;
+      font-size:.68rem;
+      border-radius:8px;
       margin-left:.4rem;
       display:flex;
-      justify-content:center;
       align-items:center;
-      font-weight:700;
+      font-weight:500;
     }
     .price h1{
-      font-size:.8rem;
+      font-size:.78rem;
       line-height:1em;
       margin:0;
       margin-top:.5rem;
       text-decoration:line-through;
-      color:#444;
-      font-weight:600;
+      color:#6b7280;
+      font-weight:400;
     }
     .price h2{
-      color:red;
-      font-size:1.3rem;
-      font-weight:800;
+      color:#c21b1b;
+      font-size:1.18rem;
+      font-weight:600;
       line-height:1em;
       margin:0;
-      margin-top:.5rem;
+      margin-top:.45rem;
     }
     .price h3{
       font-size:.72rem;
-      font-weight:600;
+      font-weight:400;
       margin:0;
-      margin-top:.5rem;
-      color:#333;
+      margin-top:.45rem;
+      color:#374151;
     }
     .stars-price{
-      margin:.5rem 0;
+      margin:.5rem 0 .35rem;
       font-size:.8rem;
-      color:#444;
-      font-weight:600;
+      color:#6b7280;
+      font-weight:400;
     }
-    .stars-price i{ color:var(--star); font-size:.8rem; margin-right:.2rem; }
+    .stars-price i{ color:var(--star); font-size:.8rem; margin-right:.18rem; }
+
+    @media (max-width:575.98px){
+      .produtos{ flex-direction:row !important; }
+      .produto-one{ width:49%; }
+      .produto-one h1{ font-size:.78rem; }
+    }
 
     /* =========================
        CARROSSEL DE CATEGORIAS (circular)
@@ -241,22 +254,24 @@
       padding: 10px;
     }
     .cats-title{
-      font-size:1.35rem;
-      font-weight:800;
-      margin: 6px 0 10px;
-      letter-spacing:-.2px;
+      font-size:1.05rem;
+      font-weight:600;
+      margin: 4px 0 10px;
+      letter-spacing:-.1px;
+      color:#111;
     }
     .cats-carousel{
       position:relative;
       background:#fff;
       border:1px solid var(--border);
-      border-radius:14px;
-      padding: 14px 10px 12px;
+      border-radius: var(--radius);
+      padding: 12px 10px 10px;
       overflow:hidden;
+      box-shadow: var(--shadow);
     }
     .cats-track{
       display:flex;
-      gap:18px;
+      gap:16px;
       overflow:auto;
       scroll-snap-type:x mandatory;
       padding: 6px 38px 10px;
@@ -266,7 +281,7 @@
     .cats-track::-webkit-scrollbar-thumb{ background:#ddd; border-radius:99px; }
 
     .cat-item{
-      min-width: 150px;
+      min-width: 140px;
       scroll-snap-align: center;
       display:flex;
       flex-direction:column;
@@ -275,26 +290,22 @@
       user-select:none;
     }
     .cat-circle{
-      width: 132px;
-      height: 132px;
-      border-radius: 999px;
-      background:#f1f3f5;
-      border: 2px solid #e5e7eb;
+      width: 124px;
+      height: 124px;
+      border-radius:999px;
+      background:#f3f4f6;
+      border:1px solid #e5e7eb;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      box-shadow: 0 1px 8px rgba(0,0,0,.06);
     }
-    .cat-circle img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
+    .cat-circle img{ width:100%; height:100%; object-fit:cover; }
     .cat-item .cat-name{
-      margin-top:10px;
-      font-size: 1.05rem;
-      font-weight:700;
+      margin-top:9px;
+      font-size: .98rem;
+      font-weight:500;
       color:#111;
     }
 
@@ -314,7 +325,7 @@
       cursor:pointer;
       z-index:2;
     }
-    .cats-nav i{ font-size:1.1rem; }
+    .cats-nav i{ font-size:1.05rem; }
     .cats-prev{ left:10px; }
     .cats-next{ right:10px; }
 
@@ -330,8 +341,9 @@
     .basic-card{
       background:#fff;
       border:1px solid var(--border);
-      border-radius:14px;
+      border-radius: var(--radius);
       overflow:hidden;
+      box-shadow: var(--shadow);
     }
     .basic-row{
       display:flex;
@@ -344,8 +356,8 @@
 
     .basic-img{
       width: 96px;
-      height: 68px;
-      border-radius:10px;
+      height: 70px;
+      border-radius:12px;
       border:1px solid #ededed;
       overflow:hidden;
       background:#fff;
@@ -354,51 +366,43 @@
       align-items:center;
       justify-content:center;
     }
-    .basic-img img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      padding:4px;
-    }
+    .basic-img img{ width:100%; height:100%; object-fit:contain; padding:4px; }
 
     .basic-info{ flex:1; min-width:0; }
     .basic-name{
-      font-size:1.02rem;
-      font-weight:700;
+      font-size:1rem;
+      font-weight:500;
       line-height:1.15em;
       margin:0;
       color:#111;
     }
     .basic-price{
       margin-top:6px;
-      font-size:1.35rem;
-      font-weight:900;
+      font-size:1.25rem;
+      font-weight:600;
       color:#111;
     }
-    .basic-actions{
-      margin-top:10px;
-      max-width: 240px;
-    }
+    .basic-actions{ margin-top:10px; max-width: 240px; }
     .btn-want{
       width:100%;
       background: var(--blue);
       border:none;
       color:#fff;
-      font-weight:800;
+      font-weight:600;
       padding: 10px 12px;
-      border-radius:8px;
-      font-size:1.05rem;
+      border-radius:10px;
+      font-size:1rem;
       cursor:pointer;
     }
 
     @media (max-width:575.98px){
-      .basic-row{ align-items:flex-start; }
       .basic-img{ width: 92px; height: 72px; }
       .basic-actions{ max-width: 210px; }
+      .basic-name{ font-size:.98rem; }
     }
 
     /* =========================
-       AVALIAÇÕES (gráfico estilo Shopee/ML + 2.127 avaliações)
+       AVALIAÇÕES (clean)
     ========================== */
     .avaliacoes{
       margin: 0 auto;
@@ -408,17 +412,17 @@
       max-width: 100%;
     }
     .avaliacoes h1{
-      font-size:1.55rem;
-      font-weight:900;
-      letter-spacing:-.2px;
+      font-size:1.15rem;
+      font-weight:600;
       margin:0 0 10px;
       text-align:left;
     }
     .review-box{
       border:1px solid var(--border);
-      border-radius:14px;
+      border-radius: var(--radius);
       padding:14px;
       background:#fff;
+      box-shadow: var(--shadow);
     }
     .review-top{
       display:flex;
@@ -431,10 +435,11 @@
       display:flex;
       align-items:flex-end;
       gap:10px;
+      min-width: 200px;
     }
     .review-score .num{
-      font-size:2.1rem;
-      font-weight:900;
+      font-size:1.85rem;
+      font-weight:600;
       line-height:1;
     }
     .review-score .meta{
@@ -445,9 +450,9 @@
     }
     .review-score .meta .stars i{ color:var(--star); }
     .review-score .meta .count{
-      color:#555;
-      font-weight:700;
-      font-size:.95rem;
+      color:#6b7280;
+      font-weight:400;
+      font-size:.92rem;
     }
 
     .hist{
@@ -462,14 +467,14 @@
     }
     .hist-row .label{
       width:54px;
-      font-weight:800;
-      color:#333;
-      font-size:.95rem;
+      font-weight:500;
+      color:#374151;
+      font-size:.92rem;
     }
     .hist-row .bar{
       flex:1;
       height:10px;
-      background:#f1f3f5;
+      background:#f3f4f6;
       border-radius:999px;
       overflow:hidden;
     }
@@ -482,12 +487,12 @@
     .hist-row .pct{
       width:52px;
       text-align:right;
-      font-weight:800;
-      color:#444;
+      font-weight:400;
+      color:#6b7280;
       font-size:.9rem;
     }
 
-    /* Depoimentos melhor apresentados */
+    /* Depoimentos (cards clean) */
     .depos{
       margin-top:12px;
       display:grid;
@@ -499,7 +504,7 @@
     }
     .dep{
       border:1px solid var(--border);
-      border-radius:14px;
+      border-radius: var(--radius);
       padding:12px;
       background:#fff;
     }
@@ -510,34 +515,27 @@
       margin-bottom:8px;
     }
     .dep-avatar{
-      width:44px;
-      height:44px;
+      width:42px;
+      height:42px;
       border-radius:999px;
       overflow:hidden;
       border:1px solid #eee;
       background:#f3f4f6;
       flex:0 0 auto;
     }
-    .dep-avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .dep-meta{
-      min-width:0;
-      flex:1;
-    }
+    .dep-avatar img{ width:100%; height:100%; object-fit:cover; }
+    .dep-meta{ min-width:0; flex:1; }
     .dep-meta .name{
       margin:0;
-      font-weight:900;
-      font-size:1rem;
+      font-weight:600;
+      font-size:.98rem;
       line-height:1.1;
     }
     .dep-meta .sub{
       margin:2px 0 0;
-      color:#666;
-      font-weight:700;
-      font-size:.85rem;
+      color:#6b7280;
+      font-weight:400;
+      font-size:.84rem;
       display:flex;
       gap:8px;
       flex-wrap:wrap;
@@ -546,29 +544,27 @@
       display:flex;
       gap:2px;
       margin-left:auto;
+      opacity:.95;
     }
-    .dep-stars i{ color:var(--star); font-size:.95rem; }
+    .dep-stars i{ color:var(--star); font-size:.92rem; }
     .dep-text{
       margin:0;
       font-size:.95rem;
       line-height:1.35;
-      color:#222;
-      font-weight:600;
+      color:#111;
+      font-weight:400;
     }
     .dep-photo{
       margin-top:10px;
-      border-radius:12px;
+      border-radius: var(--radius);
       overflow:hidden;
       border:1px solid #eee;
       background:#fff;
     }
-    .dep-photo img{
-      width:100%;
-      display:block;
-    }
+    .dep-photo img{ width:100%; display:block; }
 
     /* =========================
-       POPUPS (perfil e carrinho)
+       POPUPS (perfil e carrinho) - clean
     ========================== */
     .popup-overlay{
       position:fixed;
@@ -589,35 +585,35 @@
       border:1px solid #eee;
     }
     .popup-top{
-      padding:14px 16px;
+      padding:12px 14px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       border-bottom:1px solid #f0f0f0;
       background:#fff;
+      font-weight:500;
+      font-size:.95rem;
     }
     .popup-top .close{
       border:none;
       background:transparent;
-      font-size:1.4rem;
+      font-size:1.35rem;
       line-height:1;
       cursor:pointer;
       color:#111;
     }
-    .popup-body{
-      padding:16px;
-    }
+    .popup-body{ padding:14px; }
     .popup-logo{
       display:flex;
       align-items:center;
       justify-content:center;
       padding: 6px 0 12px;
     }
-    .popup-logo img{ height:38px; width:auto; display:block; }
+    .popup-logo img{ height:36px; width:auto; display:block; }
 
     .lead-box{
       border:1px solid var(--border);
-      border-radius:12px;
+      border-radius: var(--radius);
       padding:12px;
       background:#fff;
     }
@@ -627,20 +623,21 @@
       gap:10px;
       padding:6px 0;
       border-bottom:1px dashed #eee;
-      font-weight:700;
-      color:#222;
-      font-size:.95rem;
+      font-size:.92rem;
+      font-weight:400;
+      color:#374151;
     }
     .lead-row:last-child{ border-bottom:none; }
-    .lead-row span{ color:#111; font-weight:900; }
+    .lead-row span{ color:#111; font-weight:500; }
 
     .status-ok{
       margin-top:10px;
       display:flex;
       align-items:center;
       gap:8px;
-      font-weight:900;
+      font-weight:400;
       color:#111;
+      font-size:.95rem;
     }
     .status-ok .check{
       width:20px;
@@ -654,17 +651,11 @@
       font-size:.9rem;
     }
     .empty-cart{
-      font-weight:800;
-      font-size:1.05rem;
+      font-weight:400;
+      font-size:.98rem;
       color:#111;
       text-align:center;
       padding: 8px 0 4px;
-    }
-
-    /* pequenos ajustes responsivos */
-    @media (max-width:575.98px){
-      .produto-one{ width:100%; }
-      .produtos{ flex-direction:column !important; gap:10px; }
     }
   </style>
 </head>
@@ -682,7 +673,6 @@
         </div>
 
         <div class="header-logo">
-          <!-- ✅ Use seu próprio logo (não copie de terceiros) -->
           <img src="/resgate/images/logo.png" alt="Logo">
         </div>
 
@@ -705,15 +695,13 @@
     <img class="mobile" src="/resgate/images/bannermobile.png" alt="">
   </div>
 
-  <!-- 1) ✅ Remove contador -> Título minimalista -->
+  <!-- TÍTULO -->
   <section class="hero-min">
     <h1>Kits Personalizados</h1>
     <p>Aproveite a promoção de volta as aulas.</p>
   </section>
 
-  <!-- =========================
-       SEUS KITS (mantidos)
-  ========================== -->
+  <!-- 2 fileiras / 2 em 2 (como antes) -->
   <div class="produtos d-flex justify-content-between aling-items-center">
     <div class="produto-one">
       <a href="https://pay.kitnatal-hoje.online/521rZJoXrBqGeaX">
@@ -810,54 +798,6 @@
     </div>
   </div>
 
-  <div class="produtos d-flex justify-content-between aling-items-center">
-    <div class="produto-one">
-      <a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q">
-        <img src="/resgate/images/produto-5.jpg" alt="">
-        <h1>Kit Escolar Mulher Maravilha, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-        <div class="price">
-          <div class="stars-price d-flex">
-            <div class="d-flex">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-            </div>
-            (1003)
-          </div>
-          <div class="d-flex">
-            <h1>R$ 655,00</h1> <span>100% OFF</span>
-          </div>
-          <h2>R$ 0,00</h2>
-          <h3>*Restam somente 3 kits</h3>
-        </div>
-      </a>
-      <div class="btn-comprar">
-        <a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q"><button class="pulse">RESGATAR AGORA</button></a>
-      </div>
-    </div>
-
-    <div class="produto-one">
-      <a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE">
-        <img src="/resgate/images/produto-6.jpg" alt="">
-        <h1>Kit Escolar Moana, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-        <div class="price">
-          <div class="stars-price d-flex">
-            <div class="d-flex">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-            </div>
-            (1290)
-          </div>
-          <div class="d-flex">
-            <h1>R$ 655,00</h1> <span>100% OFF</span>
-          </div>
-          <h2>R$ 0,00</h2>
-          <h3>*Restam somente 2 kits</h3>
-        </div>
-      </a>
-      <div class="btn-comprar">
-        <a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE"><button class="pulse">RESGATAR AGORA</button></a>
-      </div>
-    </div>
-  </div>
-
   <!-- Kits esgotados (mantidos) -->
   <div class="produtos d-flex justify-content-between aling-items-center">
     <div class="produto-one">
@@ -901,35 +841,33 @@
     </div>
   </div>
 
-  <!-- 2) ✅ Categorias circulares em carrossel -->
+  <!-- Categorias -->
   <section class="cats-wrap">
     <div class="cats-title">Busque por categoria</div>
-
     <div class="cats-carousel">
       <button class="cats-nav cats-prev" type="button" id="catsPrev" aria-label="Anterior">
         <i class="bi bi-chevron-left"></i>
       </button>
 
       <div class="cats-track" id="catsTrack">
-        <!-- ✅ Troque as imagens para /images/nome.png -->
         <div class="cat-item">
-          <div class="cat-circle"><img src="/images/categoria-1.png" alt="Categoria 1"></div>
+          <div class="cat-circle"><img src="/images/categoria-1.png" alt="Lápis de Cor"></div>
           <div class="cat-name">Lápis de Cor</div>
         </div>
         <div class="cat-item">
-          <div class="cat-circle"><img src="/images/categoria-2.png" alt="Categoria 2"></div>
+          <div class="cat-circle"><img src="/images/categoria-2.png" alt="Estojos"></div>
           <div class="cat-name">Estojos</div>
         </div>
         <div class="cat-item">
-          <div class="cat-circle"><img src="/images/categoria-3.png" alt="Categoria 3"></div>
+          <div class="cat-circle"><img src="/images/categoria-3.png" alt="Canetas"></div>
           <div class="cat-name">Canetas</div>
         </div>
         <div class="cat-item">
-          <div class="cat-circle"><img src="/images/categoria-4.png" alt="Categoria 4"></div>
+          <div class="cat-circle"><img src="/images/categoria-4.png" alt="Cadernos"></div>
           <div class="cat-name">Cadernos</div>
         </div>
         <div class="cat-item">
-          <div class="cat-circle"><img src="/images/categoria-5.png" alt="Categoria 5"></div>
+          <div class="cat-circle"><img src="/images/categoria-5.png" alt="Acessórios"></div>
           <div class="cat-name">Acessórios</div>
         </div>
       </div>
@@ -940,10 +878,9 @@
     </div>
   </section>
 
-  <!-- 3) ✅ Produtos estilo anexo (8 itens) -->
+  <!-- Produtos básicos -->
   <section class="basic-wrap">
     <div class="basic-card">
-      <!-- ✅ copie a lógica do anexo: imagem, nome, preço, botão azul -->
       <div class="basic-row">
         <div class="basic-img"><img src="/images/kit-1.png" alt="Kit 1"></div>
         <div class="basic-info">
@@ -1018,7 +955,7 @@
     </div>
   </section>
 
-  <!-- 4) ✅ Avaliações com gráfico + 2.127 avaliações + depoimentos melhor apresentados -->
+  <!-- Avaliações -->
   <section class="avaliacoes">
     <h1>Avaliações</h1>
 
@@ -1034,7 +971,6 @@
           </div>
         </div>
 
-        <!-- Gráfico estilo Shopee/ML (proporções reais aproximadas) -->
         <div class="hist">
           <div class="hist-row">
             <div class="label">5 ★</div>
@@ -1064,20 +1000,15 @@
         </div>
       </div>
 
-      <!-- Depoimentos (estrutura pronta para você trocar fotos/nome/descrição) -->
       <div class="depos">
         <div class="dep">
           <div class="dep-head">
             <div class="dep-avatar"><img src="/images/dep-1.png" alt="Foto 1"></div>
             <div class="dep-meta">
               <p class="name">Mariana Lopes</p>
-              <div class="sub">
-                <span>São Paulo - SP</span>
-                <span>•</span>
-                <span>há 3 min</span>
-              </div>
+              <div class="sub"><span>São Paulo - SP</span><span>•</span><span>há 3 min</span></div>
             </div>
-            <div class="dep-stars" aria-label="5 estrelas">
+            <div class="dep-stars">
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
@@ -1090,13 +1021,9 @@
             <div class="dep-avatar"><img src="/images/dep-2.png" alt="Foto 2"></div>
             <div class="dep-meta">
               <p class="name">Luana Maria</p>
-              <div class="sub">
-                <span>Curitiba - PR</span>
-                <span>•</span>
-                <span>há 8 min</span>
-              </div>
+              <div class="sub"><span>Curitiba - PR</span><span>•</span><span>há 8 min</span></div>
             </div>
-            <div class="dep-stars" aria-label="5 estrelas">
+            <div class="dep-stars">
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
@@ -1109,13 +1036,9 @@
             <div class="dep-avatar"><img src="/images/dep-3.png" alt="Foto 3"></div>
             <div class="dep-meta">
               <p class="name">Fernanda Alves</p>
-              <div class="sub">
-                <span>Recife - PE</span>
-                <span>•</span>
-                <span>há 12 min</span>
-              </div>
+              <div class="sub"><span>Recife - PE</span><span>•</span><span>há 12 min</span></div>
             </div>
-            <div class="dep-stars" aria-label="5 estrelas">
+            <div class="dep-stars">
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
@@ -1128,13 +1051,9 @@
             <div class="dep-avatar"><img src="/images/dep-4.png" alt="Foto 4"></div>
             <div class="dep-meta">
               <p class="name">Sofia Bezerra</p>
-              <div class="sub">
-                <span>Goiânia - GO</span>
-                <span>•</span>
-                <span>há 19 min</span>
-              </div>
+              <div class="sub"><span>Goiânia - GO</span><span>•</span><span>há 19 min</span></div>
             </div>
-            <div class="dep-stars" aria-label="5 estrelas">
+            <div class="dep-stars">
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
           </div>
@@ -1145,13 +1064,11 @@
     </div>
   </section>
 
-  <!-- =========================
-       5) Popup Perfil
-  ========================== -->
+  <!-- POPUP Perfil -->
   <div class="popup-overlay" id="profileOverlay" aria-hidden="true">
     <div class="popup" role="dialog" aria-modal="true" aria-label="Perfil">
       <div class="popup-top">
-        <strong>Perfil</strong>
+        <span>Perfil</span>
         <button class="close" type="button" data-close="profileOverlay" aria-label="Fechar">&times;</button>
       </div>
       <div class="popup-body">
@@ -1172,13 +1089,11 @@
     </div>
   </div>
 
-  <!-- =========================
-       6) Popup Carrinho
-  ========================== -->
+  <!-- POPUP Carrinho -->
   <div class="popup-overlay" id="cartOverlay" aria-hidden="true">
     <div class="popup" role="dialog" aria-modal="true" aria-label="Carrinho">
       <div class="popup-top">
-        <strong>Carrinho</strong>
+        <span>Carrinho</span>
         <button class="close" type="button" data-close="cartOverlay" aria-label="Fechar">&times;</button>
       </div>
       <div class="popup-body">
@@ -1199,7 +1114,6 @@
       if(!track || !prev || !next) return;
 
       const step = () => Math.max(220, Math.floor(track.clientWidth * 0.65));
-
       prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior:"smooth" }));
       next.addEventListener("click", () => track.scrollBy({ left:  step(), behavior:"smooth" }));
     })();
@@ -1220,7 +1134,6 @@
       el.setAttribute("aria-hidden","true");
     }
 
-    // Fecha ao clicar fora
     ["profileOverlay","cartOverlay"].forEach(id=>{
       const overlay = document.getElementById(id);
       if(!overlay) return;
@@ -1229,11 +1142,9 @@
       });
     });
 
-    // Botões de fechar
     document.addEventListener("click", (e)=>{
       const btn = e.target.closest("[data-close]");
-      if(!btn) return;
-      closeOverlay(btn.getAttribute("data-close"));
+      if(btn) closeOverlay(btn.getAttribute("data-close"));
     });
 
     function onlyDigits(s){ return (s || "").replace(/\D/g,""); }
@@ -1244,7 +1155,6 @@
     }
 
     function loadLead(){
-      // Puxa do padrão anterior: localStorage.getItem("dadosUsuario") -> {nome, cpf}
       let nome = "";
       let cpf = "";
       try{
@@ -1253,7 +1163,6 @@
         cpf = (j.cpf || "").trim();
       }catch(e){}
 
-      // fallback se existir
       if(!nome || !cpf){
         try{
           const j2 = JSON.parse(localStorage.getItem("leadResumo") || "{}");
