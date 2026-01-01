@@ -15,6 +15,7 @@
       --muted:#6b7280;
       --border:#d7d7d7;
       --bg:#ffffff;
+      --err:#d12b2b;
 
       /* Escalas responsivas (ajuste fino) */
       --wrap-pad-top: clamp(22px, 3.5vw, 40px);
@@ -109,6 +110,16 @@
       height:2px;
       background:var(--border);
       margin: clamp(10px, 1.8vw, 12px) 0 clamp(18px, 3vw, 28px);
+    }
+
+    .form-error{
+      display:none;
+      text-align:left;
+      margin: 0 0 14px;
+      color:var(--err);
+      font-weight:700;
+      font-size: clamp(13px, 2.2vw, 16px);
+      line-height:1.25;
     }
 
     label{
@@ -277,7 +288,6 @@
       text-align:left;
     }
 
-    /* Ajuste de densidade em telas grandes */
     @media (min-width: 1100px){
       .wrap{ padding-left: 0; padding-right: 0; }
     }
@@ -305,6 +315,9 @@
       <div class="card">
         <h1>Faça seu login</h1>
         <div class="divider"></div>
+
+        <!-- ✅ erro de validação -->
+        <div class="form-error" id="formError">CPF inválido. Verifique e tente novamente.</div>
 
         <form id="loginForm">
           <label for="cpfEmail">E-mail ou CPF:</label>
@@ -362,6 +375,7 @@
     const loginForm = $("#loginForm");
     const input = $("#cpfEmail");
     const loading = $("#loading");
+    const formError = $("#formError");
 
     const screenLogin = $("#screen-login");
     const screenSummary = $("#screen-summary");
@@ -369,6 +383,9 @@
 
     const btnBack = $("#btnBack");
     const btnContinue = $("#btnContinue");
+
+    const STORAGE_KEY_SIMPLE = "dadosUsuario";
+    const STORAGE_KEY_FULL = "leadResumo";
 
     function onlyDigits(s){ return (s || "").replace(/\D/g, ""); }
 
@@ -382,6 +399,7 @@
       return out;
     }
 
+    // validação básica (evita lixo antes de consultar)
     function isValidCpfDigits(cpf){
       if (!cpf || cpf.length !== 11) return false;
       if (/^(\d)\1{10}$/.test(cpf)) return false;
@@ -389,6 +407,7 @@
     }
 
     input.addEventListener("input", () => {
+      formError.style.display = "none";
       const v = input.value;
       if (v.includes("@")) return;
       input.value = maskCpf(v);
@@ -402,7 +421,7 @@
 
     function renderSummary(dados){
       const rows = [
-        { k: "CPF", v: dados.cpfFormatado || dados.cpf || "-" },
+        { k: "CPF", v: dados.cpfFormatado || (dados.cpf ? maskCpf(dados.cpf) : "-") },
         { k: "Nome", v: dados.nome || "-" },
         { k: "Nascimento", v: dados.nascimento || "-" },
         { k: "Sexo", v: dados.sexo || "-" },
@@ -417,19 +436,81 @@
       `).join("");
     }
 
+    function salvarNoLocalStorage(dados){
+      const payload = {
+        nome: (dados.nome || "").trim(),
+        cpf: onlyDigits(dados.cpf || ""),
+        cpfFormatado: dados.cpfFormatado || (dados.cpf ? maskCpf(dados.cpf) : ""),
+        nascimento: dados.nascimento || "",
+        sexo: dados.sexo || "",
+        nome_mae: dados.nome_mae || "",
+        desconto: 80,
+        campanha: "Volta às Aulas",
+        updatedAt: new Date().toISOString()
+      };
+
+      // padrão simples (pra próxima etapa do funil)
+      localStorage.setItem(STORAGE_KEY_SIMPLE, JSON.stringify({
+        nome: payload.nome,
+        cpf: payload.cpf
+      }));
+
+      // completo (se você quiser usar mais campos depois)
+      localStorage.setItem(STORAGE_KEY_FULL, JSON.stringify(payload));
+
+      // compat (se já tiver página lendo essas chaves)
+      localStorage.setItem("cpf", payload.cpf);
+      localStorage.setItem("nome", payload.nome);
+      localStorage.setItem("nascimento", payload.nascimento);
+      localStorage.setItem("sexo", payload.sexo);
+      localStorage.setItem("nome_mae", payload.nome_mae);
+    }
+
+    /**
+     * ✅ ESTA FUNÇÃO AGORA CONSULTA DE VERDADE:
+     * Ela chama o SEU endpoint /api/consulta-cpf, que precisa devolver:
+     * - inválido: 422 + { valid:false, message:"CPF inválido" }
+     * - válido:   200 + { valid:true, data:{cpf,nome,nascimento,sexo,nome_mae} }
+     */
     async function consultarCpfNoSeuBackend(cpfDigits){
-      return { cpf: cpfDigits, nome: "", nascimento: "", sexo: "", nome_mae: "" };
+      const url = `/api/consulta-cpf?cpf=${encodeURIComponent(cpfDigits)}`;
+      const r = await fetch(url, { method:"GET", headers:{ "Accept":"application/json" } });
+      const j = await r.json().catch(() => ({}));
+
+      // debug (você pode tirar depois)
+      console.log("Resposta /api/consulta-cpf:", j);
+
+      if (!r.ok || j?.valid === false){
+        const msg = j?.message || "CPF inválido. Verifique e tente novamente.";
+        const err = new Error(msg);
+        err.code = "CPF_INVALID";
+        throw err;
+      }
+
+      // normaliza formatos comuns (caso seu backend retorne variações)
+      const raw = j?.data?.data || j?.data || j;
+
+      return {
+        cpf: raw?.cpf || cpfDigits,
+        nome: raw?.nome || raw?.NOME || raw?.nome_completo || "",
+        nascimento: raw?.nascimento || raw?.NASC || raw?.data_nascimento || "",
+        sexo: raw?.sexo || raw?.SEXO || "",
+        nome_mae: raw?.nome_mae || raw?.NOME_MAE || ""
+      };
     }
 
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      formError.style.display = "none";
 
       const raw = input.value.trim();
       const isEmail = raw.includes("@");
       const cpfDigits = onlyDigits(raw);
 
       if (isEmail){
+        // Se quiser bloquear email e aceitar só CPF, é só remover este bloco.
         const dados = { cpf:"", cpfFormatado:"", nome: raw, nascimento:"", sexo:"", nome_mae:"" };
+        salvarNoLocalStorage(dados);
         renderSummary(dados);
         screenLogin.style.display = "none";
         screenSummary.style.display = "block";
@@ -437,7 +518,8 @@
       }
 
       if (!isValidCpfDigits(cpfDigits)){
-        alert("Digite um CPF válido (11 dígitos).");
+        formError.textContent = "Digite um CPF válido (11 dígitos).";
+        formError.style.display = "block";
         return;
       }
 
@@ -445,6 +527,11 @@
 
       try{
         const dados = await consultarCpfNoSeuBackend(cpfDigits);
+
+        // ✅ se a API voltar vazio, trata como inválido
+        if (!dados?.nome){
+          throw new Error("CPF inválido. Verifique e tente novamente.");
+        }
 
         const dadosOk = {
           cpf: cpfDigits,
@@ -455,11 +542,14 @@
           nome_mae: dados?.nome_mae || ""
         };
 
+        salvarNoLocalStorage(dadosOk);
         renderSummary(dadosOk);
+
         screenLogin.style.display = "none";
         screenSummary.style.display = "block";
       } catch(err){
-        alert("Não foi possível carregar os dados agora. Tente novamente.");
+        formError.textContent = err?.message || "Não foi possível carregar os dados agora. Tente novamente.";
+        formError.style.display = "block";
       } finally {
         loading.style.display = "none";
       }
