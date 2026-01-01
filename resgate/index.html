@@ -244,93 +244,106 @@
       .produto-one h1{ font-size:.78rem; }
     }
 
-    /* =========================
-       CARROSSEL DE CATEGORIAS (circular)
-    ========================== */
-    .cats-wrap{
-      margin: 10px auto 0;
-      width: 1200px;
-      max-width: 100%;
-      padding: 10px;
-    }
-    .cats-title{
-      font-size:1.05rem;
-      font-weight:600;
-      margin: 4px 0 10px;
-      letter-spacing:-.1px;
-      color:#111;
-    }
-    .cats-carousel{
-      position:relative;
-      background:#fff;
-      border-radius: var(--radius);
-      padding: 12px 10px 10px;
-      overflow:hidden;
-    }
-    .cats-track{
-      display:flex;
-      gap:16px;
-      overflow:auto;
-      scroll-snap-type:x mandatory;
-      padding: 6px 38px 10px;
-      -webkit-overflow-scrolling: touch;
-    }
-    .cats-track::-webkit-scrollbar{ height:8px; }
-    .cats-track::-webkit-scrollbar-thumb{ background:#ddd; border-radius:99px; }
+  /* =========================
+   CARROSSEL DE CATEGORIAS (clean)
+========================== */
+.cats-wrap{
+  margin: 10px auto 0;
+  width: 1200px;
+  max-width: 100%;
+  padding: 10px;
+}
 
-    .cat-item{
-      min-width: 140px;
-      scroll-snap-align: center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-      user-select:none;
-    }
-    .cat-circle{
-    width: 124px;
-    height: 124px;
-    border-radius: 12px; /* <- antes era 999px */
-    background:#f3f4f6;
-    border:1px solid #e5e7eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    box-shadow: 0 1px 8px rgba(0,0,0,.06);
-  }
-  .cat-circle img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-  }
+.cats-title{
+  font-size:1.05rem;
+  font-weight:500;
+  margin: 4px 0 10px;
+  letter-spacing:-.1px;
+  color:#111;
+}
 
-    .cat-item .cat-name{
-      margin-top:9px;
-      font-size: .98rem;
-      font-weight:500;
-      color:#111;
-    }
+.cats-carousel{
+  position:relative;
+  padding: 6px 0;
+  overflow:hidden;
+}
 
-    .cats-nav{
-      position:absolute;
-      top: 50%;
-      transform: translateY(-52%);
-      width:34px;
-      height:34px;
-      border-radius:999px;
-      border:none;
-      background: rgba(0,0,0,.55);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      z-index:2;
-    }
-    .cats-nav i{ font-size:1.05rem; }
-    .cats-prev{ left:10px; }
-    .cats-next{ right:10px; }
+.cats-track{
+  display:flex;
+  gap:16px;
+  overflow:auto;
+  scroll-snap-type:x mandatory;
+  padding: 6px 38px 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* scrollbar discreto */
+.cats-track::-webkit-scrollbar{ height:6px; }
+.cats-track::-webkit-scrollbar-thumb{
+  background:#ddd;
+  border-radius:99px;
+}
+
+.cat-item{
+  min-width: 140px;
+  scroll-snap-align: center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  user-select:none;
+}
+
+/* 🔥 IMAGEM LIMPA (sem borda, sem sombra) */
+.cat-circle{
+  width:124px;
+  height:124px;
+  border-radius:12px;
+  background:none;
+  border:none;
+  box-shadow:none;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.cat-circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* texto minimalista */
+.cat-item .cat-name{
+  margin-top:8px;
+  font-size:.95rem;
+  font-weight:400;
+  color:#111;
+}
+
+/* setas */
+.cats-nav{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  width:32px;
+  height:32px;
+  border-radius:999px;
+  border:none;
+  background: rgba(0,0,0,.45);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:2;
+}
+
+.cats-nav i{ font-size:1rem; }
+.cats-prev{ left:6px; }
+.cats-next{ right:6px; }
 
     /* =========================
        LISTA DE PRODUTOS (8 itens, estilo anexo)
