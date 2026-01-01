@@ -1401,6 +1401,29 @@
     btnCart && btnCart.addEventListener("click", ()=>{
       openOverlay("cartOverlay");
     });
+
+    (function(){
+      const trilha = document.getElementById("trilha");
+      if (!trilha) return;
+
+      trilha.volume = 0.05;
+      let started = false;
+
+      async function playAudio(){
+        if (started) return;
+        try{ await trilha.play(); started = true; } catch(e){}
+      }
+
+      document.addEventListener("DOMContentLoaded", playAudio);
+
+      const unlockEvents = ["click","touchstart","keydown","scroll","mousemove"];
+      const unlock = () => {
+        playAudio();
+        unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, { passive:true }));
+      };
+      unlockEvents.forEach(ev => window.addEventListener(ev, unlock, { passive:true }));
+    })();
+    
   </script>
 
   <script src="/resgate/js/bootstrap.bundle.min.js" crossorigin="anonymous" type="c36a8d385844ef1da01080ac-text/javascript"></script>
