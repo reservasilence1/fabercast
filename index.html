@@ -196,6 +196,15 @@
       cursor:pointer;
     }
 
+    /* LOGO NO HEADER */
+    .brand-logo{
+    height: clamp(34px, 6vw, 54px);
+    width: auto;
+    display: block;
+    user-select: none;
+   }
+
+
     /* TELA 2: RESUMO */
     .summary{
       max-width:640px;
@@ -301,13 +310,11 @@
     Seu navegador não suporta o elemento de áudio.
   </audio>
 
+
   <!-- HEADER -->
-  <header class="topbar">
-    <div class="brand" aria-label="Marca">
-      <div class="brand-name">SUA LOJA</div>
-      <div class="brand-sub">since 1761</div>
-    </div>
-  </header>
+<header class="topbar">
+  <img class="brand-logo" src="/images/logo-fabercastell.png" alt="Faber-Castell">
+</header>
 
   <main class="wrap">
     <!-- TELA 1: LOGIN -->
