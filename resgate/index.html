@@ -1,672 +1,1285 @@
-<!DOCTYPE html><html lang="pt-BR"><head>
-    <meta charset="utf-8">
-    <script src="/resgate/js/latest_1.js" data-utmify-prevent-subids="" async="" defer=""></script>
-<script src="/resgate/js/latest_1.js" data-utmify-prevent-subids="" async="" defer=""></script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
 
+  <script src="/resgate/js/latest_1.js" data-utmify-prevent-subids async defer></script>
+  <script src="/resgate/js/latest_1.js" data-utmify-prevent-subids async defer></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Loja Faber-Castell Oficial - Entrega para Todo Brasil.</title>
-    <link href="/resgate/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="/resgate/css/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="/resgate/js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loja - Entrega para Todo Brasil.</title>
+
+  <link href="/resgate/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="/resgate/css/bootstrap-icons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <script src="/resgate/js/latest.js" data-utmify-prevent-subids async defer></script>
+
   <style>
-    body {
-        font-family: "Montserrat", serif !important;
+    body{ font-family:"Montserrat", serif !important; background:#fff; color:#111; }
+
+    :root{
+      --red:#d40e28;
+      --blue:#4a73b2;
+      --border:#e3e3e3;
+      --muted:#6b7280;
+      --star:#fab737;
     }
 
-    .topo {
-        background-color: #d40e28;
-        padding: 1rem 0rem;
+    /* =========================
+       HEADER (igual layout do anexo, sem copiar marca)
+    ========================== */
+    .topbar-mini{
+      background:#8f0f1f;
+      color:#fff;
+      font-size:.9rem;
+      padding:.55rem 0;
+      text-align:center;
+      font-weight:600;
+    }
+    .header-main{
+      background:var(--red);
+      padding:.7rem 0 .9rem;
+      position:sticky;
+      top:0;
+      z-index:50;
+      box-shadow:0 3px 12px rgba(0,0,0,.10);
+    }
+    .header-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .header-left, .header-right{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:84px;
+    }
+    .header-left i, .header-right i{
+      color:#fff;
+      font-size:1.9rem;
+      line-height:1;
+      cursor:pointer;
+      user-select:none;
+    }
+    .header-logo{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+    .header-logo img{
+      height:40px;
+      width:auto;
+      display:block;
+      user-select:none;
     }
 
-    .topo img {
-        width: 200px;
+    .header-search{
+      margin-top:.75rem;
+      background:#fff;
+      border-radius:.45rem;
+      padding:.55rem .65rem;
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+    }
+    .header-search input{
+      border:none;
+      outline:none;
+      width:100%;
+      font-size:.95rem;
+      font-weight:500;
+      color:#111;
+    }
+    .header-search .bi-search{
+      color:var(--red);
+      font-size:1.2rem;
     }
 
-    @media (max-width: 575.98px) {
-        .topo img {
-            width: 30%;
-        }
+    /* Banner */
+    .banner { margin: 0 auto; width: 1200px; max-width: 100%; }
+    .banner img { width: 100%; }
+
+    .desktop{ display:block; }
+    .mobile{ display:none; }
+    @media (max-width:575.98px){
+      .desktop{ display:none !important; }
+      .mobile{ display:block !important; }
+      .header-logo img{ height:36px; }
     }
 
-    .topo i {
-        color: white;
-        font-size: 2rem;
+    /* =========================
+       TÍTULO MINIMALISTA (substitui contador)
+    ========================== */
+    .hero-min{
+      margin: 0 auto;
+      width: 1200px;
+      max-width: 100%;
+      padding: 18px 10px 8px;
+    }
+    .hero-min h1{
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin:0;
+      letter-spacing:-.3px;
+    }
+    .hero-min p{
+      margin:.25rem 0 0;
+      color:#444;
+      font-size:.98rem;
+      font-weight:500;
     }
 
-    .pesquisa {
-        width: 50%;
-        background-color: white;
-        border-radius: .4rem;
-        padding: .5rem;
-        font-size: .8rem;
-        position: relative;
+    /* =========================
+       PRODUTOS (kits principais - mantém sua lógica)
+    ========================== */
+    .produtos{
+      margin: 0 auto;
+      width: 1200px;
+      max-width: 100%;
+      padding: .5rem;
+    }
+    .produto-one{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:.5rem;
+      border: solid var(--border) 1px;
+      border-radius:.5rem;
+      width:48%;
+      position:relative;
+      background:#fff;
+    }
+    .produto-one img{ width:100%; border-radius:.35rem; }
+    .produto-one h1{
+      font-size:.8rem;
+      line-height:1.2em;
+      margin:0;
+      margin-top:.5rem;
+      font-weight:600;
     }
 
-    .pesquisa i {
-        color: black;
-        font-size: 1rem;
-        top: 0;
-        right: 0;
+    .btn-comprar{ width:100%; }
+    .btn-comprar button{
+      margin-top:.6rem;
+      width:100%;
+      background-color:#13c600;
+      border:none;
+      padding:.55rem 0;
+      color:#fff;
+      font-size:.85rem;
+      font-weight:800;
+      border-radius:.45rem;
+    }
+    button.esgotado{ opacity:.45; background:#bdbdbd !important; color:#fff; font-weight:800; }
+    .produto-one a{ text-decoration:none; color:#111; }
+
+    @keyframes pulse{
+      0%{ transform:scale(1); }
+      50%{ transform:scale(1.06); }
+      100%{ transform:scale(1); }
+    }
+    .pulse{ animation:pulse 1.5s infinite; }
+
+    .price span{
+      background-color:#2d5a35;
+      color:#fff;
+      padding:0 .5rem;
+      font-size:.7rem;
+      border-radius:.3rem;
+      margin-left:.4rem;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:700;
+    }
+    .price h1{
+      font-size:.8rem;
+      line-height:1em;
+      margin:0;
+      margin-top:.5rem;
+      text-decoration:line-through;
+      color:#444;
+      font-weight:600;
+    }
+    .price h2{
+      color:red;
+      font-size:1.3rem;
+      font-weight:800;
+      line-height:1em;
+      margin:0;
+      margin-top:.5rem;
+    }
+    .price h3{
+      font-size:.72rem;
+      font-weight:600;
+      margin:0;
+      margin-top:.5rem;
+      color:#333;
+    }
+    .stars-price{
+      margin:.5rem 0;
+      font-size:.8rem;
+      color:#444;
+      font-weight:600;
+    }
+    .stars-price i{ color:var(--star); font-size:.8rem; margin-right:.2rem; }
+
+    /* =========================
+       CARROSSEL DE CATEGORIAS (circular)
+    ========================== */
+    .cats-wrap{
+      margin: 10px auto 0;
+      width: 1200px;
+      max-width: 100%;
+      padding: 10px;
+    }
+    .cats-title{
+      font-size:1.35rem;
+      font-weight:800;
+      margin: 6px 0 10px;
+      letter-spacing:-.2px;
+    }
+    .cats-carousel{
+      position:relative;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding: 14px 10px 12px;
+      overflow:hidden;
+    }
+    .cats-track{
+      display:flex;
+      gap:18px;
+      overflow:auto;
+      scroll-snap-type:x mandatory;
+      padding: 6px 38px 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .cats-track::-webkit-scrollbar{ height:8px; }
+    .cats-track::-webkit-scrollbar-thumb{ background:#ddd; border-radius:99px; }
+
+    .cat-item{
+      min-width: 150px;
+      scroll-snap-align: center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      user-select:none;
+    }
+    .cat-circle{
+      width: 132px;
+      height: 132px;
+      border-radius: 999px;
+      background:#f1f3f5;
+      border: 2px solid #e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .cat-circle img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .cat-item .cat-name{
+      margin-top:10px;
+      font-size: 1.05rem;
+      font-weight:700;
+      color:#111;
     }
 
-    .banner {
-        margin: 0 auto;
-        width: 1200px;
-        max-width: 100%;
+    .cats-nav{
+      position:absolute;
+      top: 50%;
+      transform: translateY(-52%);
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:none;
+      background: rgba(0,0,0,.55);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:2;
+    }
+    .cats-nav i{ font-size:1.1rem; }
+    .cats-prev{ left:10px; }
+    .cats-next{ right:10px; }
+
+    /* =========================
+       LISTA DE PRODUTOS (8 itens, estilo anexo)
+    ========================== */
+    .basic-wrap{
+      margin: 14px auto 0;
+      width: 1200px;
+      max-width: 100%;
+      padding: 0 10px 10px;
+    }
+    .basic-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+    }
+    .basic-row{
+      display:flex;
+      gap:12px;
+      padding: 14px;
+      border-top:1px solid #f0f0f0;
+      align-items:flex-start;
+    }
+    .basic-row:first-child{ border-top:none; }
+
+    .basic-img{
+      width: 96px;
+      height: 68px;
+      border-radius:10px;
+      border:1px solid #ededed;
+      overflow:hidden;
+      background:#fff;
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .basic-img img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:4px;
     }
 
-    .banner img {
-        width: 100%;
+    .basic-info{ flex:1; min-width:0; }
+    .basic-name{
+      font-size:1.02rem;
+      font-weight:700;
+      line-height:1.15em;
+      margin:0;
+      color:#111;
+    }
+    .basic-price{
+      margin-top:6px;
+      font-size:1.35rem;
+      font-weight:900;
+      color:#111;
+    }
+    .basic-actions{
+      margin-top:10px;
+      max-width: 240px;
+    }
+    .btn-want{
+      width:100%;
+      background: var(--blue);
+      border:none;
+      color:#fff;
+      font-weight:800;
+      padding: 10px 12px;
+      border-radius:8px;
+      font-size:1.05rem;
+      cursor:pointer;
     }
 
-    
-
-    .box {
-        padding: 1rem 0rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    @media (max-width:575.98px){
+      .basic-row{ align-items:flex-start; }
+      .basic-img{ width: 92px; height: 72px; }
+      .basic-actions{ max-width: 210px; }
     }
 
-
-    .countdown {
-        padding: .5rem 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
+    /* =========================
+       AVALIAÇÕES (gráfico estilo Shopee/ML + 2.127 avaliações)
+    ========================== */
+    .avaliacoes{
+      margin: 0 auto;
+      margin-top: 18px;
+      padding: 18px 10px 28px;
+      width: 1200px;
+      max-width: 100%;
+    }
+    .avaliacoes h1{
+      font-size:1.55rem;
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 10px;
+      text-align:left;
+    }
+    .review-box{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+    }
+    .review-top{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .review-score{
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+    }
+    .review-score .num{
+      font-size:2.1rem;
+      font-weight:900;
+      line-height:1;
+    }
+    .review-score .meta{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      padding-bottom:2px;
+    }
+    .review-score .meta .stars i{ color:var(--star); }
+    .review-score .meta .count{
+      color:#555;
+      font-weight:700;
+      font-size:.95rem;
     }
 
-    #days, #hours, #seconds, #minutes {
-        width: 100%;
-        font-size: 1.4rem;
-        font-weight: 600;
-        background-color: red;
-        color: white;
-        text-align: center;
-        padding: 15px;
-        border-radius: 5px;
-        flex: 1;
+    .hist{
+      flex: 1 1 340px;
+      min-width: 280px;
+    }
+    .hist-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin: 6px 0;
+    }
+    .hist-row .label{
+      width:54px;
+      font-weight:800;
+      color:#333;
+      font-size:.95rem;
+    }
+    .hist-row .bar{
+      flex:1;
+      height:10px;
+      background:#f1f3f5;
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .hist-row .bar > span{
+      display:block;
+      height:100%;
+      background: var(--star);
+      width: 0%;
+    }
+    .hist-row .pct{
+      width:52px;
+      text-align:right;
+      font-weight:800;
+      color:#444;
+      font-size:.9rem;
     }
 
-    .box span {
-        font-size: 1rem;
-        display: block;
+    /* Depoimentos melhor apresentados */
+    .depos{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width:575.98px){
+      .depos{ grid-template-columns: 1fr; }
+    }
+    .dep{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+    }
+    .dep-head{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .dep-avatar{
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid #eee;
+      background:#f3f4f6;
+      flex:0 0 auto;
+    }
+    .dep-avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .dep-meta{
+      min-width:0;
+      flex:1;
+    }
+    .dep-meta .name{
+      margin:0;
+      font-weight:900;
+      font-size:1rem;
+      line-height:1.1;
+    }
+    .dep-meta .sub{
+      margin:2px 0 0;
+      color:#666;
+      font-weight:700;
+      font-size:.85rem;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .dep-stars{
+      display:flex;
+      gap:2px;
+      margin-left:auto;
+    }
+    .dep-stars i{ color:var(--star); font-size:.95rem; }
+    .dep-text{
+      margin:0;
+      font-size:.95rem;
+      line-height:1.35;
+      color:#222;
+      font-weight:600;
+    }
+    .dep-photo{
+      margin-top:10px;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid #eee;
+      background:#fff;
+    }
+    .dep-photo img{
+      width:100%;
+      display:block;
     }
 
-    .box p {
-        margin: 0;
-        font-size: 1rem;
+    /* =========================
+       POPUPS (perfil e carrinho)
+    ========================== */
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      z-index:2000;
+    }
+    .popup{
+      width:min(420px, 100%);
+      background:#fff;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      border:1px solid #eee;
+    }
+    .popup-top{
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:1px solid #f0f0f0;
+      background:#fff;
+    }
+    .popup-top .close{
+      border:none;
+      background:transparent;
+      font-size:1.4rem;
+      line-height:1;
+      cursor:pointer;
+      color:#111;
+    }
+    .popup-body{
+      padding:16px;
+    }
+    .popup-logo{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 6px 0 12px;
+    }
+    .popup-logo img{ height:38px; width:auto; display:block; }
+
+    .lead-box{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      background:#fff;
+    }
+    .lead-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:6px 0;
+      border-bottom:1px dashed #eee;
+      font-weight:700;
+      color:#222;
+      font-size:.95rem;
+    }
+    .lead-row:last-child{ border-bottom:none; }
+    .lead-row span{ color:#111; font-weight:900; }
+
+    .status-ok{
+      margin-top:10px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      color:#111;
+    }
+    .status-ok .check{
+      width:20px;
+      height:20px;
+      border-radius:999px;
+      background:var(--red);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:.9rem;
+    }
+    .empty-cart{
+      font-weight:800;
+      font-size:1.05rem;
+      color:#111;
+      text-align:center;
+      padding: 8px 0 4px;
     }
 
-    .produtos {
-        margin: 0 auto;
-        width: 1200px;
-        max-width: 100%;
-        padding: .5rem;
+    /* pequenos ajustes responsivos */
+    @media (max-width:575.98px){
+      .produto-one{ width:100%; }
+      .produtos{ flex-direction:column !important; gap:10px; }
     }
+  </style>
+</head>
 
-    .produto-one {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: .5rem;
-        border: solid #e3e3e3 1px;
-        border-radius: .5rem;
-        width: 48%;
-        position: relative;
-    }
+<body>
 
-    .produto-one img {
-        width: 100%;
-    }
+  <!-- HEADER -->
+  <div class="topbar-mini">Frete grátis (Brasil) a partir de R$ 79,00</div>
 
-    
-
-    .produto-one h1 {
-        font-size: .8rem;
-        line-height: 1.2em;
-        margin: 0px;
-        margin-top: .5rem;
-    }
-
-    .btn-comprar {
-        width: 100%;
-    }
-
-    .btn-comprar a {
-        width: 100%;
-    }
-
-    .btn-comprar button {
-        margin-top: .6rem;
-        width: 100%;
-        background-color: #13c600;
-        border: none;
-        padding: .5rem 0rem;
-        color: white;
-        font-size: .8rem;
-        font-weight: 600;
-        border-radius: .4rem;
-    }
-
-    button.esgotado {
-        opacity: 0.4;
-    }
-
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.1);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    .pulse {
-    animation: pulse 1.5s infinite;
-    }
-
-
-
-
-
-
-    .desktop {
-        display: block;
-    }
-
-    .mobile {
-        display: none;
-    }
-
-    @media (max-width: 575.98px) {
-        .desktop {
-            display: none !important;
-        }
-
-        .mobile {
-            display: block !important;
-        } 
-    }
-  </style></head>
-
-
-  
-  <body>
-
-
-        <div class="topo">
-            <div class="container d-flex justify-content-between align-items-center">
-                <i class="bi bi-list"></i>
-                <div class="pesquisa d-flex justify-content-between align-items-center">
-                    O que você procura?
-                    <i class="bi bi-search"></i>
-                </div>
-                <img src="/resgate/images/logo.png" alt="">
-            </div>
+  <header class="header-main">
+    <div class="container">
+      <div class="header-row">
+        <div class="header-left">
+          <i class="bi bi-list" title="Menu" aria-label="Menu"></i>
         </div>
 
-        <div class="banner d-flex justify-content-center align-items-center">
-            <img class="desktop" src="/resgate/images/bannerfabercastell.png" alt="">
-            <img class="mobile" src="/resgate/images/bannermobile.png" alt="">
+        <div class="header-logo">
+          <!-- ✅ Use seu próprio logo (não copie de terceiros) -->
+          <img src="/resgate/images/logo.png" alt="Logo">
         </div>
 
-        <div class="countdown">
-            <div class="box">
-            <span id="days">00</span>
-            <p>Dias</p>
+        <div class="header-right">
+          <i class="bi bi-person-circle" id="btnProfile" title="Perfil" aria-label="Perfil"></i>
+          <i class="bi bi-cart3" id="btnCart" title="Carrinho" aria-label="Carrinho"></i>
+        </div>
+      </div>
+
+      <div class="header-search" role="search" aria-label="Busca">
+        <input type="text" placeholder="Digite aqui sua busca" aria-label="Digite aqui sua busca">
+        <i class="bi bi-search"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <div class="banner d-flex justify-content-center align-items-center">
+    <img class="desktop" src="/resgate/images/bannerfabercastell.png" alt="">
+    <img class="mobile" src="/resgate/images/bannermobile.png" alt="">
+  </div>
+
+  <!-- 1) ✅ Remove contador -> Título minimalista -->
+  <section class="hero-min">
+    <h1>Kits Personalizados</h1>
+    <p>Aproveite a promoção de volta as aulas.</p>
+  </section>
+
+  <!-- =========================
+       SEUS KITS (mantidos)
+  ========================== -->
+  <div class="produtos d-flex justify-content-between aling-items-center">
+    <div class="produto-one">
+      <a href="https://pay.kitnatal-hoje.online/521rZJoXrBqGeaX">
+        <img src="/resgate/images/produto-1.webp" alt="">
+        <h1>Kit Escolar Masculino, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
+        <div class="price">
+          <div class="stars-price d-flex">
+            <div class="d-flex">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
-            <div class="box">
-            <span id="hours">00</span>
-            <p>Horas</p>
+            (1870)
+          </div>
+          <div class="d-flex">
+            <h1>R$ 655,00</h1> <span>100% OFF</span>
+          </div>
+          <h2>R$ 0,00</h2>
+          <h3>*Restam somente 4 kits</h3>
+        </div>
+      </a>
+      <div class="btn-comprar">
+        <a href="https://pay.kitnatal-hoje.online/521rZJoXrBqGeaX"><button class="pulse">RESGATAR AGORA</button></a>
+      </div>
+    </div>
+
+    <div class="produto-one">
+      <a href="https://pay.kitnatal-hoje.online/JqoR32WzjXdZVj5">
+        <img src="/resgate/images/produto-2.png" alt="">
+        <h1>Kit Escolar Feminino, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
+        <div class="price">
+          <div class="stars-price d-flex">
+            <div class="d-flex">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
-            <div class="box">
-            <span id="minutes">00</span>
-            <p>Minutos</p>
+            (1239)
+          </div>
+          <div class="d-flex">
+            <h1>R$ 655,00</h1> <span>100% OFF</span>
+          </div>
+          <h2>R$ 0,00</h2>
+          <h3>*Restam somente 3 kits</h3>
+        </div>
+      </a>
+      <div class="btn-comprar">
+        <a href="https://pay.kitnatal-hoje.online/JqoR32WzjXdZVj5"><button class="pulse">RESGATAR AGORA</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="produtos d-flex justify-content-between aling-items-center">
+    <div class="produto-one">
+      <a href="https://pay.kitnatal-hoje.online/nQ7kZ7R2vBL30eJ">
+        <img src="/resgate/images/produto-3.jpg" alt="">
+        <h1>Kit Escolar Homem-Aranha, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
+        <div class="price">
+          <div class="stars-price d-flex">
+            <div class="d-flex">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
-            <div class="box">
-            <span id="seconds">00</span>
-            <p>Segundos</p>
+            (1198)
+          </div>
+          <div class="d-flex">
+            <h1>R$ 655,00</h1> <span>100% OFF</span>
+          </div>
+          <h2>R$ 0,00</h2>
+          <h3>*Restam somente 5 kits</h3>
+        </div>
+      </a>
+      <div class="btn-comprar">
+        <a href="https://pay.kitnatal-hoje.online/nQ7kZ7R2vBL30eJ"><button class="pulse">RESGATAR AGORA</button></a>
+      </div>
+    </div>
+
+    <div class="produto-one">
+      <a href="https://pay.kitnatal-hoje.online/5pjw3Ro1BR2Z2lQ">
+        <img src="/resgate/images/produto-4.jpg" alt="">
+        <h1>Kit Escolar Sonic, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
+        <div class="price">
+          <div class="stars-price d-flex">
+            <div class="d-flex">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
+            (1287)
+          </div>
+          <div class="d-flex">
+            <h1>R$ 655,00</h1> <span>100% OFF</span>
+          </div>
+          <h2>R$ 0,00</h2>
+          <h3>*Restam somente 2 kits</h3>
+        </div>
+      </a>
+      <div class="btn-comprar">
+        <a href="https://pay.kitnatal-hoje.online/5pjw3Ro1BR2Z2lQ"><button class="pulse">RESGATAR AGORA</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="produtos d-flex justify-content-between aling-items-center">
+    <div class="produto-one">
+      <a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q">
+        <img src="/resgate/images/produto-5.jpg" alt="">
+        <h1>Kit Escolar Mulher Maravilha, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
+        <div class="price">
+          <div class="stars-price d-flex">
+            <div class="d-flex">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            (1003)
+          </div>
+          <div class="d-flex">
+            <h1>R$ 655,00</h1> <span>100% OFF</span>
+          </div>
+          <h2>R$ 0,00</h2>
+          <h3>*Restam somente 3 kits</h3>
+        </div>
+      </a>
+      <div class="btn-comprar">
+        <a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q"><button class="pulse">RESGATAR AGORA</button></a>
+      </div>
+    </div>
+
+    <div class="produto-one">
+      <a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE">
+        <img src="/resgate/images/produto-6.jpg" alt="">
+        <h1>Kit Escolar Moana, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
+        <div class="price">
+          <div class="stars-price d-flex">
+            <div class="d-flex">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            (1290)
+          </div>
+          <div class="d-flex">
+            <h1>R$ 655,00</h1> <span>100% OFF</span>
+          </div>
+          <h2>R$ 0,00</h2>
+          <h3>*Restam somente 2 kits</h3>
+        </div>
+      </a>
+      <div class="btn-comprar">
+        <a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE"><button class="pulse">RESGATAR AGORA</button></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kits esgotados (mantidos) -->
+  <div class="produtos d-flex justify-content-between aling-items-center">
+    <div class="produto-one">
+      <img src="/resgate/images/produto-7.png" alt="">
+      <h1>Kit Miraculous, 1 Bolsa, 1 Lancheira, 1 Guarda chuva, 1 estojo, 1 Caixa Lápis de cor, 1 Garrafa, 3 Lápis, 3 Caneta, 1 Caderno, Borracha e Apontador</h1>
+      <div class="price">
+        <div class="stars-price d-flex">
+          <div class="d-flex">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          (1120)
+        </div>
+        <div class="d-flex">
+          <h1>R$ 655,00</h1> <span>100% OFF</span>
+        </div>
+        <h2>R$ 0,00</h2>
+      </div>
+      <div class="btn-comprar">
+        <button class="esgotado">ESGOTADO</button>
+      </div>
+    </div>
+
+    <div class="produto-one">
+      <img src="/resgate/images/produto-8.png" alt="">
+      <h1>Kit Baby Shark, 1 Bolsa, 1 Lancheira, 1 Caixa Lápis de cor, 1 Garrafa, 3 Lápis, 3 Caneta, 1 Caderno, Borracha e Apontador</h1>
+      <div class="price">
+        <div class="stars-price d-flex">
+          <div class="d-flex">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          (1320)
+        </div>
+        <div class="d-flex">
+          <h1>R$ 655,00</h1> <span>100% OFF</span>
+        </div>
+        <h2>R$ 0,00</h2>
+      </div>
+      <div class="btn-comprar">
+        <button class="esgotado">ESGOTADO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2) ✅ Categorias circulares em carrossel -->
+  <section class="cats-wrap">
+    <div class="cats-title">Busque por categoria</div>
+
+    <div class="cats-carousel">
+      <button class="cats-nav cats-prev" type="button" id="catsPrev" aria-label="Anterior">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+
+      <div class="cats-track" id="catsTrack">
+        <!-- ✅ Troque as imagens para /images/nome.png -->
+        <div class="cat-item">
+          <div class="cat-circle"><img src="/images/categoria-1.png" alt="Categoria 1"></div>
+          <div class="cat-name">Lápis de Cor</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-circle"><img src="/images/categoria-2.png" alt="Categoria 2"></div>
+          <div class="cat-name">Estojos</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-circle"><img src="/images/categoria-3.png" alt="Categoria 3"></div>
+          <div class="cat-name">Canetas</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-circle"><img src="/images/categoria-4.png" alt="Categoria 4"></div>
+          <div class="cat-name">Cadernos</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-circle"><img src="/images/categoria-5.png" alt="Categoria 5"></div>
+          <div class="cat-name">Acessórios</div>
+        </div>
+      </div>
+
+      <button class="cats-nav cats-next" type="button" id="catsNext" aria-label="Próximo">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3) ✅ Produtos estilo anexo (8 itens) -->
+  <section class="basic-wrap">
+    <div class="basic-card">
+      <!-- ✅ copie a lógica do anexo: imagem, nome, preço, botão azul -->
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-1.png" alt="Kit 1"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 01 - Lápis + Borracha + Apontador</p>
+          <div class="basic-price">R$ 11,40</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-2.png" alt="Kit 2"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 02 - Lápis de Cor 12 Cores + Apontador</p>
+          <div class="basic-price">R$ 21,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-3.png" alt="Kit 3"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 03 - Canetas (3 un) + Marca-texto</p>
+          <div class="basic-price">R$ 18,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-4.png" alt="Kit 4"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 04 - Caderno + Régua + Borracha</p>
+          <div class="basic-price">R$ 24,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-5.png" alt="Kit 5"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 05 - Giz de Cera (12 un)</p>
+          <div class="basic-price">R$ 15,40</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-6.png" alt="Kit 6"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 06 - Estojo Simples + Lápis + Borracha</p>
+          <div class="basic-price">R$ 29,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-7.png" alt="Kit 7"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 07 - Lápis de Cor 24 Cores</p>
+          <div class="basic-price">R$ 39,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <div class="basic-row">
+        <div class="basic-img"><img src="/images/kit-8.png" alt="Kit 8"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 08 - Caneta + Lápis + Apontador</p>
+          <div class="basic-price">R$ 12,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) ✅ Avaliações com gráfico + 2.127 avaliações + depoimentos melhor apresentados -->
+  <section class="avaliacoes">
+    <h1>Avaliações</h1>
+
+    <div class="review-box">
+      <div class="review-top">
+        <div class="review-score">
+          <div class="num">4,9</div>
+          <div class="meta">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <div class="count">2.127 avaliações</div>
+          </div>
         </div>
 
-        <style>
-            .price {
-            }
+        <!-- Gráfico estilo Shopee/ML (proporções reais aproximadas) -->
+        <div class="hist">
+          <div class="hist-row">
+            <div class="label">5 ★</div>
+            <div class="bar"><span style="width: 92%;"></span></div>
+            <div class="pct">92%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">4 ★</div>
+            <div class="bar"><span style="width: 6%;"></span></div>
+            <div class="pct">6%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">3 ★</div>
+            <div class="bar"><span style="width: 1%;"></span></div>
+            <div class="pct">1%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">2 ★</div>
+            <div class="bar"><span style="width: .5%;"></span></div>
+            <div class="pct">0%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">1 ★</div>
+            <div class="bar"><span style="width: .5%;"></span></div>
+            <div class="pct">0%</div>
+          </div>
+        </div>
+      </div>
 
-            .price span {
-                background-color: #2d5a35;
-                color: white;
-                padding: 0rem .5rem;
-                font-size: .7rem;
-                border-radius: .3rem;
-                margin-left: .4rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .price h1 {
-                font-size: .8rem;
-                line-height: 1em;
-                margin: 0px;
-                margin-top: .5rem;
-                text-decoration: line-through;
-            }
-
-            .price h2 {
-                color: red;
-                font-size: 1.3rem;
-                font-weight: 700;
-                line-height: 1em;
-                margin: 0px;
-                margin-top: .5rem;
-            }
-
-            .price h3 {
-                font-size: .7rem;
-                font-weight: 500;
-                margin: 0px;
-                margin-top: .5rem;
-            }
-
-            .stars-price {
-                margin: .5rem 0rem;
-                font-size: .8rem;
-                
-            }
-
-            .stars-price i {
-                color: #fab737;
-                font-size: .8rem;
-                margin-right: .2rem;
-            }
-
-            .produto-one a {
-                text-decoration: none;
-                color: black;
-            }
-        </style>
-
-        <div class="produtos d-flex justify-content-between aling-items-center">
-            
-            <div class="produto-one">
-                <a href="https://pay.kitnatal-hoje.online/521rZJoXrBqGeaX">
-                    <img src="/resgate/images/produto-1.webp" alt="">
-                    <h1>Kit Escolar Masculino, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-                    <div class="price">
-                            <div class="stars-price d-flex">
-                                <div class="d-flex">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                (1870)
-                            </div>
-                            <div class="d-flex">
-                                <h1>R$ 655,00</h1> <span>100% OFF</span>
-                            </div>
-                            <h2>R$ 0,00</h2>
-                            <h3>*Restam somente 4 kits</h3>
-                    </div>
-                    </a><div class="btn-comprar"><a href="https://pay.kitnatal-hoje.online/521rZJoXrBqGeaX">
-                        </a><a href="https://pay.kitnatal-hoje.online/521rZJoXrBqGeaX"><button class="pulse">RESGATAR AGORA</button></a>
-                    </div>
-                
+      <!-- Depoimentos (estrutura pronta para você trocar fotos/nome/descrição) -->
+      <div class="depos">
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/images/dep-1.png" alt="Foto 1"></div>
+            <div class="dep-meta">
+              <p class="name">Mariana Lopes</p>
+              <div class="sub">
+                <span>São Paulo - SP</span>
+                <span>•</span>
+                <span>há 3 min</span>
+              </div>
             </div>
-
-            <div class="produto-one">
-                <a href="https://pay.kitnatal-hoje.online/JqoR32WzjXdZVj5">
-                    <img src="/resgate/images/produto-2.png" alt="">
-                    <h1>Kit Escolar Feminino, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-                    <div class="price">
-                            <div class="stars-price d-flex">
-                                <div class="d-flex">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                (1239)
-                            </div>
-                            <div class="d-flex">
-                                <h1>R$ 655,00</h1> <span>100% OFF</span>
-                            </div>
-                            <h2>R$ 0,00</h2>
-                            <h3>*Restam somente 3 kits</h3>
-                    </div>
-                    </a><div class="btn-comprar"><a href="https://pay.kitnatal-hoje.online/JqoR32WzjXdZVj5">
-                    </a><a href="https://pay.kitnatal-hoje.online/JqoR32WzjXdZVj5"><button class="pulse">RESGATAR AGORA</button></a>
-                    </div>
-                
+            <div class="dep-stars" aria-label="5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
+          </div>
+          <p class="dep-text">Chegou tudo certinho, bem embalado e a entrega foi muito rápida. Excelente custo-benefício.</p>
+          <div class="dep-photo"><img src="/images/dep-foto-1.png" alt="Comprovante 1"></div>
         </div>
 
-        <div class="produtos d-flex justify-content-between aling-items-center">
-            <div class="produto-one">
-                <a href="https://pay.kitnatal-hoje.online/nQ7kZ7R2vBL30eJ">
-                    <img src="/resgate/images/produto-3.jpg" alt="">
-                    <h1>Kit Escolar Homem-Aranha, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-                    <div class="price">
-                            <div class="stars-price d-flex">
-                                <div class="d-flex">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                (1198)
-                            </div>
-                            <div class="d-flex">
-                                <h1>R$ 655,00</h1> <span>100% OFF</span>
-                            </div>
-                            <h2>R$ 0,00</h2>
-                            <h3>*Restam somente 5 kits</h3>
-                    </div>
-                    </a><div class="btn-comprar"><a href="https://pay.kitnatal-hoje.online/nQ7kZ7R2vBL30eJ">
-                        </a><a href="https://pay.kitnatal-hoje.online/nQ7kZ7R2vBL30eJ"><button class="pulse">RESGATAR AGORA</button></a>
-                    </div>
-                
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/images/dep-2.png" alt="Foto 2"></div>
+            <div class="dep-meta">
+              <p class="name">Luana Maria</p>
+              <div class="sub">
+                <span>Curitiba - PR</span>
+                <span>•</span>
+                <span>há 8 min</span>
+              </div>
             </div>
-
-            <div class="produto-one">
-                <a href="https://pay.kitnatal-hoje.online/5pjw3Ro1BR2Z2lQ">
-                    <img src="/resgate/images/produto-4.jpg" alt="">
-                    <h1>Kit Escolar Sonic, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-                    <div class="price">
-                            <div class="stars-price d-flex">
-                                <div class="d-flex">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                (1287)
-                            </div>
-                            <div class="d-flex">
-                                <h1>R$ 655,00</h1> <span>100% OFF</span>
-                            </div>
-                            <h2>R$ 0,00</h2>
-                            <h3>*Restam somente 2 kits</h3>
-                    </div>
-                    </a><div class="btn-comprar"><a href="https://pay.kitnatal-hoje.online/5pjw3Ro1BR2Z2lQ">
-                    </a><a href="https://pay.kitnatal-hoje.online/5pjw3Ro1BR2Z2lQ"><button class="pulse">RESGATAR AGORA</button></a>
-                    </div>
-                
+            <div class="dep-stars" aria-label="5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
+          </div>
+          <p class="dep-text">Qualidade ótima e chegou antes da data prevista. Valeu muito a pena nessa promoção.</p>
+          <div class="dep-photo"><img src="/images/dep-foto-2.png" alt="Comprovante 2"></div>
         </div>
 
-        <div class="produtos d-flex justify-content-between aling-items-center">
-            <div class="produto-one">
-                <a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q">
-                    <img src="/resgate/images/produto-5.jpg" alt="">
-                    <h1>Kit Escolar Mulher Maravilha, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-                    <div class="price">
-                            <div class="stars-price d-flex">
-                                <div class="d-flex">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                (1003)
-                            </div>
-                            <div class="d-flex">
-                                <h1>R$ 655,00</h1> <span>100% OFF</span>
-                            </div>
-                            <h2>R$ 0,00</h2>
-                            <h3>*Restam somente 3 kits</h3>
-                    </div>
-                    </a><div class="btn-comprar"><a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q">
-                        </a><a href="https://pay.kitnatal-hoje.online/YL9jZDQn4DnGp4q"><button class="pulse">RESGATAR AGORA</button></a>
-                    </div>
-                
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/images/dep-3.png" alt="Foto 3"></div>
+            <div class="dep-meta">
+              <p class="name">Fernanda Alves</p>
+              <div class="sub">
+                <span>Recife - PE</span>
+                <span>•</span>
+                <span>há 12 min</span>
+              </div>
             </div>
-
-            <div class="produto-one">
-                <a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE">
-                    <img src="/resgate/images/produto-6.jpg" alt="">
-                    <h1>Kit Escolar Moana, 1 Bolsa, 1 Caderno, 1 Estojo, 1 Caixa de lápis de cor, 3 Lápis, 3 Canetas, 1 Régua, 1 Apontador e 1 Borracha</h1>
-                    <div class="price">
-                            <div class="stars-price d-flex">
-                                <div class="d-flex">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                (1290)
-                            </div>
-                            <div class="d-flex">
-                                <h1>R$ 655,00</h1> <span>100% OFF</span>
-                            </div>
-                            <h2>R$ 0,00</h2>
-                            <h3>*Restam somente 2 kits</h3>
-                    </div>
-                    </a><div class="btn-comprar"><a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE">
-                    </a><a href="https://pay.kitnatal-hoje.online/4KovG12JryzgyDE"><button class="pulse">RESGATAR AGORA</button></a>
-                    </div>
-                
+            <div class="dep-stars" aria-label="5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
+          </div>
+          <p class="dep-text">Tudo do jeito que eu esperava. Ótimo para economizar na volta às aulas.</p>
+          <div class="dep-photo"><img src="/images/dep-foto-3.png" alt="Comprovante 3"></div>
         </div>
 
-        <div class="produtos d-flex justify-content-between aling-items-center">
-            <div class="produto-one">
-                
-                <img src="/resgate/images/produto-7.png" alt="">
-                <h1>Kit Miraculous, 1 Bolsa, 1 Lancheira, 1 Guarda chuva, 1 estojo, 1 Caixa Lápis de cor, 1 Garrafa, 3 Lápis, 3 Caneta, 1 Caderno, Borracha e Apontador</h1>
-                <div class="price">
-                        <div class="stars-price d-flex">
-                            <div class="d-flex">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            (1120)
-                        </div>
-                        <div class="d-flex">
-                            <h1>R$ 655,00</h1> <span>100% OFF</span>
-                        </div>
-                        <h2>R$ 0,00</h2>
-                </div>
-                <div class="btn-comprar">
-                    <button class="esgotado">ESGOTADO</button>
-                </div>
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/images/dep-4.png" alt="Foto 4"></div>
+            <div class="dep-meta">
+              <p class="name">Sofia Bezerra</p>
+              <div class="sub">
+                <span>Goiânia - GO</span>
+                <span>•</span>
+                <span>há 19 min</span>
+              </div>
             </div>
-
-            <div class="produto-one">
-                
-                <img src="/resgate/images/produto-8.png" alt="">
-                <h1>Kit Baby Shark, 1 Bolsa, 1 Lancheira, 1 Caixa Lápis de cor, 1 Garrafa, 3 Lápis, 3 Caneta, 1 Caderno, Borracha e Apontador</h1>
-                <div class="price">
-                        <div class="stars-price d-flex">
-                            <div class="d-flex">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            (1320)
-                        </div>
-                        <div class="d-flex">
-                            <h1>R$ 655,00</h1> <span>100% OFF</span>
-                        </div>
-                        <h2>R$ 0,00</h2>
-                </div>
-                <div class="btn-comprar">
-                     <button class="esgotado">ESGOTADO</button>
-                </div>
+            <div class="dep-stars" aria-label="5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
+          </div>
+          <p class="dep-text">Eu fiquei com receio, mas chegou bem rápido e em perfeito estado. Recomendo!</p>
+          <div class="dep-photo"><img src="/images/dep-foto-4.png" alt="Comprovante 4"></div>
         </div>
-        
-        <style>
-            .avaliacoes {
-                margin: 0 auto;
-                margin-top: 2rem;
-                padding: 2rem 1rem;
-                width: 1200px;
-                max-width: 100%;
-            }
+      </div>
+    </div>
+  </section>
 
-            .avaliacoes h1 {
-                font-size: 1.6rem;
-                font-weight: 600;
-                line-height: 1em;
-            }
-
-
-            .stars {
-                margin-left: .4rem;
-            }
-
-            .stars i {
-                color: #fab737;
-            }
-
-            .avaliacao-one {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: .8rem .5rem;
-                border: solid #e3e3e3 1px;
-                border-radius: .5rem;
-                width: 48%;
-                position: relative;
-                margin-bottom: 1rem;
-            }
-
-            @media (max-width: 575.98px) {
-                .avaliacao-one {
-                    width: 100%;
-                }
-            }
-
-            .avaliacao-one h1 {
-                font-size: 1rem;
-                font-weight: 600;
-                line-height: 1em;
-            }
-
-
-            .avaliacao-one h2 {
-                font-size: .9rem;
-                font-weight: 400;
-                line-height: 1em;
-            }
-
-            .avaliacao-one h3 {
-                font-size: .9rem;
-                font-weight: 400;
-                line-height: 1em;
-                margin-top: .4rem;
-            }
-
-            .avaliacao-one img {
-                width: 100%;
-            }
-        </style>
-
-        <div class="avaliacoes d-flex flex-column justify-content-center align-items-center">
-            <h1>Avaliações</h1>
-
-            <div class="d-flex justify-content-center align-items-center">
-                <h1>4.9</h1>
-                <div class="stars d-flex justify-content-center align-items-center">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="avaliacao-one">
-                <h1>@marianalopes21</h1>
-                <h2>Ganhei 50% de desconto e amei a qualidade, chegou tudo certo conforme que eu pedi , veio muito bem embalado, e a entrega foi mega rápida . Eu ameiii!❤️</h2>
-                <img src="/resgate/images/aval-1.png" alt="">
-                <h3>Hoje - há 3 min.</h3>
-            </div>
-
-            <div class="avaliacao-one">
-                <h1>@luanamaria_</h1>
-                <h2>Simplesmente perfeito. Minha filha amou. Super recomendo. Lápis para profissionais. Chegou bem embalado e antes da data prevista de entrega. Obrigada Faber castell por realizar sonhos.</h2>
-                <img src="/resgate/images/aval-3.png" alt="">
-                <h3>Hoje - há 8 min.</h3>
-            </div>
-
-            <div class="avaliacao-one">
-                <h1>@alves_fernanda12</h1>
-                <h2>Adorei a cor, coube tudo no estojo, chegou bem rápido, bem a tempo da volta aulas 😅, Super recomendo!</h2>
-                <img src="/resgate/images/aval-2.png" alt="">
-                <h3>Hoje - há 5 min.</h3>
-            </div>
-
-            <div class="avaliacao-one">
-                <h1>@sofiabezerrafrnds_</h1>
-                <h2>Fiquei com o pé atrás, mas é a Faber castelo né? Fui lá e fiz o pedido, 5 dias depois o correio chega aqui em casa com meu kit. PASSADAAAA!!</h2>
-                <img src="/resgate/images/aval-4.png" alt="">
-                <h3>Hoje - há 13 min.</h3>
-            </div>
-
-            <div class="avaliacao-one">
-                <h1>@lauandandrade__</h1>
-                <h2>chegou antes do prazo! a mochila veio separada no meu, amei muito!! otimo para economizar nesse volta as aula ganhei 100% de desconto foi otimo!</h2>
-                <img src="/resgate/images/aval-5.png" alt="">
-                <h3>Hoje - há 19 min.</h3>
-            </div>
+  <!-- =========================
+       5) Popup Perfil
+  ========================== -->
+  <div class="popup-overlay" id="profileOverlay" aria-hidden="true">
+    <div class="popup" role="dialog" aria-modal="true" aria-label="Perfil">
+      <div class="popup-top">
+        <strong>Perfil</strong>
+        <button class="close" type="button" data-close="profileOverlay" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="popup-body">
+        <div class="popup-logo">
+          <img src="/resgate/images/logo.png" alt="Logo">
         </div>
 
+        <div class="lead-box">
+          <div class="lead-row"><div>Nome</div><span id="leadNome">—</span></div>
+          <div class="lead-row"><div>CPF</div><span id="leadCpf">—</span></div>
+        </div>
 
+        <div class="status-ok">
+          <div class="check"><i class="bi bi-check-lg"></i></div>
+          <div>Conta logada</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <script type="c36a8d385844ef1da01080ac-text/javascript">
-            function updateCountdown() {
-            const now = new Date();
-            const nextMidnight = new Date();
-            nextMidnight.setHours(24, 0, 0, 0); // Próxima meia-noite
+  <!-- =========================
+       6) Popup Carrinho
+  ========================== -->
+  <div class="popup-overlay" id="cartOverlay" aria-hidden="true">
+    <div class="popup" role="dialog" aria-modal="true" aria-label="Carrinho">
+      <div class="popup-top">
+        <strong>Carrinho</strong>
+        <button class="close" type="button" data-close="cartOverlay" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="popup-body">
+        <div class="popup-logo">
+          <img src="/resgate/images/logo.png" alt="Logo">
+        </div>
+        <div class="empty-cart">Você não adicionou nenhum produto no carrinho</div>
+      </div>
+    </div>
+  </div>
 
-            const diff = nextMidnight - now;
+  <script type="c36a8d385844ef1da01080ac-text/javascript">
+    // ====== Carrossel de categorias
+    (function(){
+      const track = document.getElementById("catsTrack");
+      const prev = document.getElementById("catsPrev");
+      const next = document.getElementById("catsNext");
+      if(!track || !prev || !next) return;
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      const step = () => Math.max(220, Math.floor(track.clientWidth * 0.65));
 
-            document.getElementById("days").textContent = String(days).padStart(2, "0");
-            document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-            document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-            document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-            }
+      prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior:"smooth" }));
+      next.addEventListener("click", () => track.scrollBy({ left:  step(), behavior:"smooth" }));
+    })();
 
-            // Atualiza o contador a cada segundo
-            setInterval(updateCountdown, 1000);
+    // ====== Popups
+    const $ = (s) => document.querySelector(s);
 
-            // Inicializa o contador
-            updateCountdown();
-        </script>
+    function openOverlay(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.style.display = "flex";
+      el.setAttribute("aria-hidden","false");
+    }
+    function closeOverlay(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.style.display = "none";
+      el.setAttribute("aria-hidden","true");
+    }
 
+    // Fecha ao clicar fora
+    ["profileOverlay","cartOverlay"].forEach(id=>{
+      const overlay = document.getElementById(id);
+      if(!overlay) return;
+      overlay.addEventListener("click", (e)=>{
+        if(e.target === overlay) closeOverlay(id);
+      });
+    });
 
+    // Botões de fechar
+    document.addEventListener("click", (e)=>{
+      const btn = e.target.closest("[data-close]");
+      if(!btn) return;
+      closeOverlay(btn.getAttribute("data-close"));
+    });
 
-    <script src="/resgate/js/bootstrap.bundle.min.js" crossorigin="anonymous" type="c36a8d385844ef1da01080ac-text/javascript"></script>
-  <script src="/resgate/js/rocket-loader.min.js" data-cf-settings="c36a8d385844ef1da01080ac-|49" defer=""></script>
-</body></html>
+    function onlyDigits(s){ return (s || "").replace(/\D/g,""); }
+    function maskCpf(cpf){
+      const d = onlyDigits(cpf).slice(0,11);
+      if(d.length !== 11) return cpf || "—";
+      return d.slice(0,3)+"."+d.slice(3,6)+"."+d.slice(6,9)+"-"+d.slice(9);
+    }
+
+    function loadLead(){
+      // Puxa do padrão anterior: localStorage.getItem("dadosUsuario") -> {nome, cpf}
+      let nome = "";
+      let cpf = "";
+      try{
+        const j = JSON.parse(localStorage.getItem("dadosUsuario") || "{}");
+        nome = (j.nome || "").trim();
+        cpf = (j.cpf || "").trim();
+      }catch(e){}
+
+      // fallback se existir
+      if(!nome || !cpf){
+        try{
+          const j2 = JSON.parse(localStorage.getItem("leadResumo") || "{}");
+          nome = nome || (j2.nome || "").trim();
+          cpf = cpf || (j2.cpf || "").trim();
+        }catch(e){}
+      }
+
+      $("#leadNome").textContent = nome || "Cliente";
+      $("#leadCpf").textContent = cpf ? maskCpf(cpf) : "—";
+    }
+
+    const btnProfile = document.getElementById("btnProfile");
+    const btnCart = document.getElementById("btnCart");
+
+    btnProfile && btnProfile.addEventListener("click", ()=>{
+      loadLead();
+      openOverlay("profileOverlay");
+    });
+
+    btnCart && btnCart.addEventListener("click", ()=>{
+      openOverlay("cartOverlay");
+    });
+  </script>
+
+  <script src="/resgate/js/bootstrap.bundle.min.js" crossorigin="anonymous" type="c36a8d385844ef1da01080ac-text/javascript"></script>
+  <script src="/resgate/js/rocket-loader.min.js" data-cf-settings="c36a8d385844ef1da01080ac-|49" defer></script>
+</body>
+</html>
