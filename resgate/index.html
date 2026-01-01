@@ -244,109 +244,105 @@
       .produto-one h1{ font-size:.78rem; }
     }
 
-  /* =========================
-   CARROSSEL DE CATEGORIAS (clean)
-========================== */
-.cats-wrap{
-  margin: 10px auto 0;
-  width: 1200px;
-  max-width: 100%;
-  padding: 10px;
-}
+    /* =========================
+       CARROSSEL DE CATEGORIAS (clean)
+    ========================== */
+    .cats-wrap{
+      margin: 10px auto 0;
+      width: 1200px;
+      max-width: 100%;
+      padding: 10px;
+    }
 
-.cats-title{
-  font-size:1.05rem;
-  font-weight:500;
-  margin: 4px 0 10px;
-  letter-spacing:-.1px;
-  color:#111;
-}
+    .cats-title{
+      font-size:1.05rem;
+      font-weight:500;
+      margin: 4px 0 10px;
+      letter-spacing:-.1px;
+      color:#111;
+    }
 
-.cats-carousel{
-  position:relative;
-  padding: 6px 0;
-  overflow:hidden;
-}
+    .cats-carousel{
+      position:relative;
+      padding: 6px 0;
+      overflow:hidden;
+    }
 
-.cats-track{
-  display:flex;
-  gap:16px;
-  overflow:auto;
-  scroll-snap-type:x mandatory;
-  padding: 6px 38px 10px;
-  -webkit-overflow-scrolling: touch;
-}
+    .cats-track{
+      display:flex;
+      gap:16px;
+      overflow:auto;
+      scroll-snap-type:x mandatory;
+      padding: 6px 38px 10px;
+      -webkit-overflow-scrolling: touch;
+    }
 
-/* scrollbar discreto */
-.cats-track::-webkit-scrollbar{ height:6px; }
-.cats-track::-webkit-scrollbar-thumb{
-  background:#ddd;
-  border-radius:99px;
-}
+    .cats-track::-webkit-scrollbar{ height:6px; }
+    .cats-track::-webkit-scrollbar-thumb{
+      background:#ddd;
+      border-radius:99px;
+    }
 
-.cat-item{
-  min-width: 140px;
-  scroll-snap-align: center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  user-select:none;
-}
+    .cat-item{
+      min-width: 140px;
+      scroll-snap-align: center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      user-select:none;
+    }
 
-/* 🔥 IMAGEM LIMPA (sem borda, sem sombra) */
-.cat-circle{
-  width:124px;
-  height:124px;
-  border-radius:12px;
-  background:none;
-  border:none;
-  box-shadow:none;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+    .cat-circle{
+      width:124px;
+      height:124px;
+      border-radius:12px;
+      background:none;
+      border:none;
+      box-shadow:none;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-.cat-circle img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
+    .cat-circle img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
-/* texto minimalista */
-.cat-item .cat-name{
-  margin-top:8px;
-  font-size:.95rem;
-  font-weight:400;
-  color:#111;
-}
+    .cat-item .cat-name{
+      margin-top:8px;
+      font-size:.95rem;
+      font-weight:400;
+      color:#111;
+    }
 
-/* setas */
-.cats-nav{
-  position:absolute;
-  top:50%;
-  transform: translateY(-50%);
-  width:32px;
-  height:32px;
-  border-radius:999px;
-  border:none;
-  background: rgba(0,0,0,.45);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:2;
-}
+    .cats-nav{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:32px;
+      height:32px;
+      border-radius:999px;
+      border:none;
+      background: rgba(0,0,0,.45);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:2;
+    }
 
-.cats-nav i{ font-size:1rem; }
-.cats-prev{ left:6px; }
-.cats-next{ right:6px; }
+    .cats-nav i{ font-size:1rem; }
+    .cats-prev{ left:6px; }
+    .cats-next{ right:6px; }
 
     /* =========================
-       LISTA DE PRODUTOS (8 itens, estilo anexo)
+       LISTA DE PRODUTOS (básicos) + avaliações/desconto (igual ideia dos personalizados)
     ========================== */
     .basic-wrap{
       margin: 14px auto 0;
@@ -385,6 +381,7 @@
     .basic-img img{ width:100%; height:100%; object-fit:contain; padding:4px; }
 
     .basic-info{ flex:1; min-width:0; }
+
     .basic-name{
       font-size:1rem;
       font-weight:500;
@@ -392,12 +389,60 @@
       margin:0;
       color:#111;
     }
+
+    /* ✅ mesma lógica dos personalizados (estrelas + qty) */
+    .basic-stars{
+      margin:8px 0 2px;
+      font-size:.82rem;
+      color:#6b7280;
+      font-weight:400;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .basic-stars .stars i{
+      color:var(--star);
+      font-size:.82rem;
+      margin-right:.18rem;
+    }
+    .basic-stars .qty{
+      color:#6b7280;
+      font-weight:400;
+    }
+
+    /* ✅ mesma lógica do desconto (preço riscado + selo) */
+    .basic-oldrow{
+      margin-top:4px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .basic-old{
+      font-size:.82rem;
+      color:#6b7280;
+      text-decoration:line-through;
+      font-weight:400;
+      margin:0;
+    }
+    .basic-off{
+      background:#2d5a35;
+      color:#fff;
+      padding:0 .45rem;
+      font-size:.70rem;
+      border-radius:8px;
+      font-weight:500;
+      line-height:1.4;
+    }
+
     .basic-price{
       margin-top:6px;
       font-size:1.25rem;
       font-weight:600;
       color:#111;
     }
+
     .basic-actions{ margin-top:10px; max-width: 240px; }
     .btn-want{
       width:100%;
@@ -415,6 +460,7 @@
       .basic-img{ width: 92px; height: 72px; }
       .basic-actions{ max-width: 210px; }
       .basic-name{ font-size:.98rem; }
+      .basic-price{ font-size:1.15rem; }
     }
 
     /* =========================
@@ -508,7 +554,6 @@
       font-size:.9rem;
     }
 
-    /* Depoimentos (cards clean) */
     .depos{
       margin-top:12px;
       display:grid;
@@ -674,7 +719,7 @@
       padding: 8px 0 4px;
     }
 
-     /* ✅ FOOTER */
+    /* ✅ FOOTER */
     footer{
       border-top:1px solid var(--border);
       background:#fff;
@@ -733,13 +778,12 @@
       height:20px;
       display:block;
     }
-    
   </style>
 </head>
 
 <body>
 
-   <!-- ✅ ÁUDIO DE FUNDO -->
+  <!-- ✅ ÁUDIO DE FUNDO -->
   <audio id="trilha" loop>
     <source src="/resgate/media/musica.mp3" type="audio/mpeg">
     Seu navegador não suporta o elemento de áudio.
@@ -946,11 +990,11 @@
           <div class="cat-name">Canetas</div>
         </div>
         <div class="cat-item">
-          <div class="cat-circle"><img src="/resgate/images/borrachas.avif" alt="Cadernos"></div>
+          <div class="cat-circle"><img src="/resgate/images/borrachas.avif" alt="Borrachas"></div>
           <div class="cat-name">Borrachas</div>
         </div>
         <div class="cat-item">
-          <div class="cat-circle"><img src="/resgate/images/cola.avif" alt="Acessórios"></div>
+          <div class="cat-circle"><img src="/resgate/images/cola.avif" alt="Colas"></div>
           <div class="cat-name">Colas</div>
         </div>
       </div>
@@ -961,13 +1005,27 @@
     </div>
   </section>
 
-  <!-- Produtos básicos -->
+  <!-- Produtos básicos (✅ agora com estrelas + desconto; ✅ +1 item = total 9) -->
   <section class="basic-wrap">
     <div class="basic-card">
+
       <div class="basic-row">
         <div class="basic-img"><img src="/resgate/images/kit1.png" alt="Kit 1"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Estojo Completo + Canetas Hidrográficas + Lapis de Cor 24 Cores</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(842)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 98,90</p>
+            <span class="basic-off">47% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 52,43</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -977,6 +1035,19 @@
         <div class="basic-img"><img src="/resgate/images/kit2.png" alt="Kit 2"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 02 - Lápis de Cor 12 Cores + Apontador</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(1.104)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 39,90</p>
+            <span class="basic-off">45% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 21,90</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -986,6 +1057,19 @@
         <div class="basic-img"><img src="/resgate/images/kit3.png" alt="Kit 3"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 03 - Canetas (3 un) + Marca-texto</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(766)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 34,90</p>
+            <span class="basic-off">46% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 18,90</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -995,6 +1079,19 @@
         <div class="basic-img"><img src="/resgate/images/kit4.png" alt="Kit 4"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 04 - Caderno + Régua + Borracha</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(593)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 49,90</p>
+            <span class="basic-off">50% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 24,90</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -1004,6 +1101,19 @@
         <div class="basic-img"><img src="/resgate/images/kit5.png" alt="Kit 5"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 05 - Giz de Cera (12 un)</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(1.332)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 27,90</p>
+            <span class="basic-off">45% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 15,40</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -1013,6 +1123,19 @@
         <div class="basic-img"><img src="/resgate/images/kit6.png" alt="Kit 6"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 06 - Estojo Simples + Lápis + Borracha</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(904)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 54,90</p>
+            <span class="basic-off">46% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 29,90</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -1022,6 +1145,19 @@
         <div class="basic-img"><img src="/resgate/images/kit7.png" alt="Kit 7"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 07 - Lápis de Cor 24 Cores</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(1.008)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 74,90</p>
+            <span class="basic-off">47% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 39,90</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
         </div>
@@ -1031,186 +1167,220 @@
         <div class="basic-img"><img src="/resgate/images/kit8.png" alt="Kit 8"></div>
         <div class="basic-info">
           <p class="basic-name">Kit Básico 08 - Caneta + Lápis + Apontador</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(612)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 24,90</p>
+            <span class="basic-off">48% OFF</span>
+          </div>
+
           <div class="basic-price">R$ 12,90</div>
           <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+      <!-- ✅ NOVO ( +1 kit básico ) -->
+      <div class="basic-row">
+        <div class="basic-img"><img src="/resgate/images/kit9.png" alt="Kit 9"></div>
+        <div class="basic-info">
+          <p class="basic-name">Kit Básico 09 - Marca-texto (4 un) + Caneta Esferográfica</p>
+
+          <div class="basic-stars">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <span class="qty">(739)</span>
+          </div>
+
+          <div class="basic-oldrow">
+            <p class="basic-old">R$ 36,90</p>
+            <span class="basic-off">46% OFF</span>
+          </div>
+
+          <div class="basic-price">R$ 19,90</div>
+          <div class="basic-actions"><button class="btn-want" type="button">Eu quero</button></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Avaliações -->
+  <section class="avaliacoes">
+    <h1>Avaliações</h1>
+
+    <div class="review-box">
+      <div class="review-top">
+        <div class="review-score">
+          <div class="num">4,9</div>
+          <div class="meta">
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <div class="count">2.127 avaliações</div>
+          </div>
+        </div>
+
+        <div class="hist">
+          <div class="hist-row">
+            <div class="label">5 ★</div>
+            <div class="bar"><span style="width: 92%;"></span></div>
+            <div class="pct">92%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">4 ★</div>
+            <div class="bar"><span style="width: 6%;"></span></div>
+            <div class="pct">6%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">3 ★</div>
+            <div class="bar"><span style="width: 1%;"></span></div>
+            <div class="pct">1%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">2 ★</div>
+            <div class="bar"><span style="width: .5%;"></span></div>
+            <div class="pct">0%</div>
+          </div>
+          <div class="hist-row">
+            <div class="label">1 ★</div>
+            <div class="bar"><span style="width: .5%;"></span></div>
+            <div class="pct">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depos">
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-1.png" alt="Foto 1"></div>
+            <div class="dep-meta">
+              <p class="name">Mariana Lopes</p>
+              <div class="sub"><span>São Paulo - SP</span><span>•</span><span>há 3 min</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Chegou tudo certinho, bem embalado e a entrega foi muito rápida. Excelente custo-benefício.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-1.png" alt="Comprovante 1"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-2.png" alt="Foto 2"></div>
+            <div class="dep-meta">
+              <p class="name">Luana Maria</p>
+              <div class="sub"><span>Curitiba - PR</span><span>•</span><span>há 8 min</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Qualidade ótima e chegou antes da data prevista. Valeu muito a pena nessa promoção.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-2.png" alt="Comprovante 2"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-3.png" alt="Foto 3"></div>
+            <div class="dep-meta">
+              <p class="name">Fernanda Alves</p>
+              <div class="sub"><span>Recife - PE</span><span>•</span><span>há 12 min</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Tudo do jeito que eu esperava. Ótimo para economizar na volta às aulas.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-3.png" alt="Comprovante 3"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-4.png" alt="Foto 4"></div>
+            <div class="dep-meta">
+              <p class="name">Sofia Bezerra</p>
+              <div class="sub"><span>Goiânia - GO</span><span>•</span><span>há 19 min</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Eu fiquei com receio, mas chegou bem rápido e em perfeito estado. Recomendo!</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-4.png" alt="Comprovante 4"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-5.png" alt="Foto 5"></div>
+            <div class="dep-meta">
+              <p class="name">Camila Rocha</p>
+              <div class="sub"><span>Rio de Janeiro - RJ</span><span>•</span><span>há 27 min</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Atendimento ótimo e entrega bem rápida. Os itens vieram impecáveis, tudo certinho.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-5.png" alt="Comprovante 5"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-6.png" alt="Foto 6"></div>
+            <div class="dep-meta">
+              <p class="name">Bruno Santana</p>
+              <div class="sub"><span>Salvador - BA</span><span>•</span><span>há 41 min</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Chegou antes do prazo e com embalagem bem protegida. Promoção excelente para a volta às aulas.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-6.png" alt="Comprovante 6"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-7.png" alt="Foto 7"></div>
+            <div class="dep-meta">
+              <p class="name">Larissa Mendes</p>
+              <div class="sub"><span>Belo Horizonte - MG</span><span>•</span><span>há 1 h</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Qualidade muito boa, bem acima do esperado. Compraria novamente sem dúvidas.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-7.png" alt="Comprovante 7"></div>
+        </div>
+
+        <div class="dep">
+          <div class="dep-head">
+            <div class="dep-avatar"><img src="/resgate/images/dep-8.png" alt="Foto 8"></div>
+            <div class="dep-meta">
+              <p class="name">Renata Silveira</p>
+              <div class="sub"><span>Porto Alegre - RS</span><span>•</span><span>há 2 h</span></div>
+            </div>
+            <div class="dep-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+          </div>
+          <p class="dep-text">Tudo organizado e do jeito que estava na descrição. Entrega rápida e produtos ótimos.</p>
+          <div class="dep-photo"><img src="/resgate/images/aval-8.png" alt="Comprovante 8"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Avaliações -->
-<section class="avaliacoes">
-  <h1>Avaliações</h1>
-
-  <div class="review-box">
-    <div class="review-top">
-      <div class="review-score">
-        <div class="num">4,9</div>
-        <div class="meta">
-          <div class="stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-          <div class="count">2.127 avaliações</div>
-        </div>
-      </div>
-
-      <div class="hist">
-        <div class="hist-row">
-          <div class="label">5 ★</div>
-          <div class="bar"><span style="width: 92%;"></span></div>
-          <div class="pct">92%</div>
-        </div>
-        <div class="hist-row">
-          <div class="label">4 ★</div>
-          <div class="bar"><span style="width: 6%;"></span></div>
-          <div class="pct">6%</div>
-        </div>
-        <div class="hist-row">
-          <div class="label">3 ★</div>
-          <div class="bar"><span style="width: 1%;"></span></div>
-          <div class="pct">1%</div>
-        </div>
-        <div class="hist-row">
-          <div class="label">2 ★</div>
-          <div class="bar"><span style="width: .5%;"></span></div>
-          <div class="pct">0%</div>
-        </div>
-        <div class="hist-row">
-          <div class="label">1 ★</div>
-          <div class="bar"><span style="width: .5%;"></span></div>
-          <div class="pct">0%</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="depos">
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-1.png" alt="Foto 1"></div>
-          <div class="dep-meta">
-            <p class="name">Mariana Lopes</p>
-            <div class="sub"><span>São Paulo - SP</span><span>•</span><span>há 3 min</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Chegou tudo certinho, bem embalado e a entrega foi muito rápida. Excelente custo-benefício.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-1.png" alt="Comprovante 1"></div>
-      </div>
-
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-2.png" alt="Foto 2"></div>
-          <div class="dep-meta">
-            <p class="name">Luana Maria</p>
-            <div class="sub"><span>Curitiba - PR</span><span>•</span><span>há 8 min</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Qualidade ótima e chegou antes da data prevista. Valeu muito a pena nessa promoção.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-2.png" alt="Comprovante 2"></div>
-      </div>
-
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-3.png" alt="Foto 3"></div>
-          <div class="dep-meta">
-            <p class="name">Fernanda Alves</p>
-            <div class="sub"><span>Recife - PE</span><span>•</span><span>há 12 min</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Tudo do jeito que eu esperava. Ótimo para economizar na volta às aulas.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-3.png" alt="Comprovante 3"></div>
-      </div>
-
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-4.png" alt="Foto 4"></div>
-          <div class="dep-meta">
-            <p class="name">Sofia Bezerra</p>
-            <div class="sub"><span>Goiânia - GO</span><span>•</span><span>há 19 min</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Eu fiquei com receio, mas chegou bem rápido e em perfeito estado. Recomendo!</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-4.png" alt="Comprovante 4"></div>
-      </div>
-
-      
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-5.png" alt="Foto 5"></div>
-          <div class="dep-meta">
-            <p class="name">Camila Rocha</p>
-            <div class="sub"><span>Rio de Janeiro - RJ</span><span>•</span><span>há 27 min</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Atendimento ótimo e entrega bem rápida. Os itens vieram impecáveis, tudo certinho.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-5.png" alt="Comprovante 5"></div>
-      </div>
-
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-6.png" alt="Foto 6"></div>
-          <div class="dep-meta">
-            <p class="name">Bruno Santana</p>
-            <div class="sub"><span>Salvador - BA</span><span>•</span><span>há 41 min</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Chegou antes do prazo e com embalagem bem protegida. Promoção excelente para a volta às aulas.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-6.png" alt="Comprovante 6"></div>
-      </div>
-
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-7.png" alt="Foto 7"></div>
-          <div class="dep-meta">
-            <p class="name">Larissa Mendes</p>
-            <div class="sub"><span>Belo Horizonte - MG</span><span>•</span><span>há 1 h</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Qualidade muito boa, bem acima do esperado. Compraria novamente sem dúvidas.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-7.png" alt="Comprovante 7"></div>
-      </div>
-
-      <div class="dep">
-        <div class="dep-head">
-          <div class="dep-avatar"><img src="/resgate/images/dep-8.png" alt="Foto 8"></div>
-          <div class="dep-meta">
-            <p class="name">Renata Silveira</p>
-            <div class="sub"><span>Porto Alegre - RS</span><span>•</span><span>há 2 h</span></div>
-          </div>
-          <div class="dep-stars">
-            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-          </div>
-        </div>
-        <p class="dep-text">Tudo organizado e do jeito que estava na descrição. Entrega rápida e produtos ótimos.</p>
-        <div class="dep-photo"><img src="/resgate/images/aval-8.png" alt="Comprovante 8"></div>
-      </div>
-    
-
-    </div>
-  </div>
-</section>
-
-   <!-- ✅ Footer com SVGs personalizados -->
+  <!-- ✅ Footer com SVGs personalizados -->
   <footer>
     <div class="footer-wrap">
 
@@ -1278,7 +1448,6 @@
     </div>
   </footer>
 
-
   <!-- POPUP Perfil -->
   <div class="popup-overlay" id="profileOverlay" aria-hidden="true">
     <div class="popup" role="dialog" aria-modal="true" aria-label="Perfil">
@@ -1320,121 +1489,118 @@
     </div>
   </div>
 
-<script type="c36a8d385844ef1da01080ac-text/javascript">
-  // ====== Carrossel de categorias
-  (function(){
-    const track = document.getElementById("catsTrack");
-    const prev = document.getElementById("catsPrev");
-    const next = document.getElementById("catsNext");
-    if(!track || !prev || !next) return;
+  <script type="c36a8d385844ef1da01080ac-text/javascript">
+    // ====== Carrossel de categorias
+    (function(){
+      const track = document.getElementById("catsTrack");
+      const prev = document.getElementById("catsPrev");
+      const next = document.getElementById("catsNext");
+      if(!track || !prev || !next) return;
 
-    const step = () => Math.max(220, Math.floor(track.clientWidth * 0.65));
-    prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior:"smooth" }));
-    next.addEventListener("click", () => track.scrollBy({ left:  step(), behavior:"smooth" }));
-  })();
+      const step = () => Math.max(220, Math.floor(track.clientWidth * 0.65));
+      prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior:"smooth" }));
+      next.addEventListener("click", () => track.scrollBy({ left:  step(), behavior:"smooth" }));
+    })();
 
-  // ====== Popups
-  const $ = (s) => document.querySelector(s);
+    // ====== Popups
+    const $ = (s) => document.querySelector(s);
 
-  function openOverlay(id){
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.style.display = "flex";
-    el.setAttribute("aria-hidden","false");
-  }
-  function closeOverlay(id){
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.style.display = "none";
-    el.setAttribute("aria-hidden","true");
-  }
-
-  ["profileOverlay","cartOverlay"].forEach(id=>{
-    const overlay = document.getElementById(id);
-    if(!overlay) return;
-    overlay.addEventListener("click", (e)=>{
-      if(e.target === overlay) closeOverlay(id);
-    });
-  });
-
-  document.addEventListener("click", (e)=>{
-    const btn = e.target.closest("[data-close]");
-    if(btn) closeOverlay(btn.getAttribute("data-close"));
-  });
-
-  function onlyDigits(s){ return (s || "").replace(/\D/g,""); }
-  function maskCpf(cpf){
-    const d = onlyDigits(cpf).slice(0,11);
-    if(d.length !== 11) return cpf || "—";
-    return d.slice(0,3)+"."+d.slice(3,6)+"."+d.slice(6,9)+"-"+d.slice(9);
-  }
-
-  function loadLead(){
-    let nome = "";
-    let cpf = "";
-    try{
-      const j = JSON.parse(localStorage.getItem("dadosUsuario") || "{}");
-      nome = (j.nome || "").trim();
-      cpf = (j.cpf || "").trim();
-    }catch(e){}
-
-    if(!nome || !cpf){
-      try{
-        const j2 = JSON.parse(localStorage.getItem("leadResumo") || "{}");
-        nome = nome || (j2.nome || "").trim();
-        cpf = cpf || (j2.cpf || "").trim();
-      }catch(e){}
+    function openOverlay(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.style.display = "flex";
+      el.setAttribute("aria-hidden","false");
+    }
+    function closeOverlay(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.style.display = "none";
+      el.setAttribute("aria-hidden","true");
     }
 
-    $("#leadNome").textContent = nome || "Cliente";
-    $("#leadCpf").textContent = cpf ? maskCpf(cpf) : "—";
-  }
-
-  const btnProfile = document.getElementById("btnProfile");
-  const btnCart = document.getElementById("btnCart");
-
-  btnProfile && btnProfile.addEventListener("click", ()=>{
-    loadLead();
-    openOverlay("profileOverlay");
-  });
-
-  btnCart && btnCart.addEventListener("click", ()=>{
-    openOverlay("cartOverlay");
-  });
-
-  // ====== Trilha sonora (corrigido)
-  (function(){
-    const trilha = document.getElementById("trilha");
-    if (!trilha) return;
-
-    trilha.volume = 0.05;
-    trilha.preload = "auto";
-
-    let started = false;
-
-    async function playAudio(){
-      if (started) return;
-      try{
-        await trilha.play();
-        started = true;
-      }catch(e){}
-    }
-
-    // tenta tocar quando a página carrega
-    document.addEventListener("DOMContentLoaded", () => {
-      playAudio();
+    ["profileOverlay","cartOverlay"].forEach(id=>{
+      const overlay = document.getElementById(id);
+      if(!overlay) return;
+      overlay.addEventListener("click", (e)=>{
+        if(e.target === overlay) closeOverlay(id);
+      });
     });
 
-    // desbloqueia em qualquer interação (autoplay policy)
-    const unlockEvents = ["click","touchstart","keydown"];
-    const unlock = () => {
-      playAudio();
-      unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, true));
-    };
-    unlockEvents.forEach(ev => window.addEventListener(ev, unlock, true));
-  })();
-</script>
+    document.addEventListener("click", (e)=>{
+      const btn = e.target.closest("[data-close]");
+      if(btn) closeOverlay(btn.getAttribute("data-close"));
+    });
 
+    function onlyDigits(s){ return (s || "").replace(/\D/g,""); }
+    function maskCpf(cpf){
+      const d = onlyDigits(cpf).slice(0,11);
+      if(d.length !== 11) return cpf || "—";
+      return d.slice(0,3)+"."+d.slice(3,6)+"."+d.slice(6,9)+"-"+d.slice(9);
+    }
+
+    function loadLead(){
+      let nome = "";
+      let cpf = "";
+      try{
+        const j = JSON.parse(localStorage.getItem("dadosUsuario") || "{}");
+        nome = (j.nome || "").trim();
+        cpf = (j.cpf || "").trim();
+      }catch(e){}
+
+      if(!nome || !cpf){
+        try{
+          const j2 = JSON.parse(localStorage.getItem("leadResumo") || "{}");
+          nome = nome || (j2.nome || "").trim();
+          cpf = cpf || (j2.cpf || "").trim();
+        }catch(e){}
+      }
+
+      $("#leadNome").textContent = nome || "Cliente";
+      $("#leadCpf").textContent = cpf ? maskCpf(cpf) : "—";
+    }
+
+    const btnProfile = document.getElementById("btnProfile");
+    const btnCart = document.getElementById("btnCart");
+
+    btnProfile && btnProfile.addEventListener("click", ()=>{
+      loadLead();
+      openOverlay("profileOverlay");
+    });
+
+    btnCart && btnCart.addEventListener("click", ()=>{
+      openOverlay("cartOverlay");
+    });
+
+    // ====== Trilha sonora (corrigido)
+    (function(){
+      const trilha = document.getElementById("trilha");
+      if (!trilha) return;
+
+      trilha.volume = 0.05;
+      trilha.preload = "auto";
+
+      let started = false;
+
+      async function playAudio(){
+        if (started) return;
+        try{
+          await trilha.play();
+          started = true;
+        }catch(e){}
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        playAudio();
+      });
+
+      const unlockEvents = ["click","touchstart","keydown"];
+      const unlock = () => {
+        playAudio();
+        unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, true));
+      };
+      unlockEvents.forEach(ev => window.addEventListener(ev, unlock, true));
+    })();
+  </script>
 
   <script src="/resgate/js/bootstrap.bundle.min.js" crossorigin="anonymous" type="c36a8d385844ef1da01080ac-text/javascript"></script>
   <script src="/resgate/js/rocket-loader.min.js" data-cf-settings="c36a8d385844ef1da01080ac-|49" defer></script>
