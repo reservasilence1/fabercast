@@ -1320,111 +1320,121 @@
     </div>
   </div>
 
-  <script type="c36a8d385844ef1da01080ac-text/javascript">
-    // ====== Carrossel de categorias
-    (function(){
-      const track = document.getElementById("catsTrack");
-      const prev = document.getElementById("catsPrev");
-      const next = document.getElementById("catsNext");
-      if(!track || !prev || !next) return;
+<script type="c36a8d385844ef1da01080ac-text/javascript">
+  // ====== Carrossel de categorias
+  (function(){
+    const track = document.getElementById("catsTrack");
+    const prev = document.getElementById("catsPrev");
+    const next = document.getElementById("catsNext");
+    if(!track || !prev || !next) return;
 
-      const step = () => Math.max(220, Math.floor(track.clientWidth * 0.65));
-      prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior:"smooth" }));
-      next.addEventListener("click", () => track.scrollBy({ left:  step(), behavior:"smooth" }));
-    })();
+    const step = () => Math.max(220, Math.floor(track.clientWidth * 0.65));
+    prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior:"smooth" }));
+    next.addEventListener("click", () => track.scrollBy({ left:  step(), behavior:"smooth" }));
+  })();
 
-    // ====== Popups
-    const $ = (s) => document.querySelector(s);
+  // ====== Popups
+  const $ = (s) => document.querySelector(s);
 
-    function openOverlay(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.style.display = "flex";
-      el.setAttribute("aria-hidden","false");
-    }
-    function closeOverlay(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.style.display = "none";
-      el.setAttribute("aria-hidden","true");
-    }
+  function openOverlay(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.style.display = "flex";
+    el.setAttribute("aria-hidden","false");
+  }
+  function closeOverlay(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.style.display = "none";
+    el.setAttribute("aria-hidden","true");
+  }
 
-    ["profileOverlay","cartOverlay"].forEach(id=>{
-      const overlay = document.getElementById(id);
-      if(!overlay) return;
-      overlay.addEventListener("click", (e)=>{
-        if(e.target === overlay) closeOverlay(id);
-      });
+  ["profileOverlay","cartOverlay"].forEach(id=>{
+    const overlay = document.getElementById(id);
+    if(!overlay) return;
+    overlay.addEventListener("click", (e)=>{
+      if(e.target === overlay) closeOverlay(id);
     });
+  });
 
-    document.addEventListener("click", (e)=>{
-      const btn = e.target.closest("[data-close]");
-      if(btn) closeOverlay(btn.getAttribute("data-close"));
-    });
+  document.addEventListener("click", (e)=>{
+    const btn = e.target.closest("[data-close]");
+    if(btn) closeOverlay(btn.getAttribute("data-close"));
+  });
 
-    function onlyDigits(s){ return (s || "").replace(/\D/g,""); }
-    function maskCpf(cpf){
-      const d = onlyDigits(cpf).slice(0,11);
-      if(d.length !== 11) return cpf || "—";
-      return d.slice(0,3)+"."+d.slice(3,6)+"."+d.slice(6,9)+"-"+d.slice(9);
-    }
+  function onlyDigits(s){ return (s || "").replace(/\D/g,""); }
+  function maskCpf(cpf){
+    const d = onlyDigits(cpf).slice(0,11);
+    if(d.length !== 11) return cpf || "—";
+    return d.slice(0,3)+"."+d.slice(3,6)+"."+d.slice(6,9)+"-"+d.slice(9);
+  }
 
-    function loadLead(){
-      let nome = "";
-      let cpf = "";
+  function loadLead(){
+    let nome = "";
+    let cpf = "";
+    try{
+      const j = JSON.parse(localStorage.getItem("dadosUsuario") || "{}");
+      nome = (j.nome || "").trim();
+      cpf = (j.cpf || "").trim();
+    }catch(e){}
+
+    if(!nome || !cpf){
       try{
-        const j = JSON.parse(localStorage.getItem("dadosUsuario") || "{}");
-        nome = (j.nome || "").trim();
-        cpf = (j.cpf || "").trim();
+        const j2 = JSON.parse(localStorage.getItem("leadResumo") || "{}");
+        nome = nome || (j2.nome || "").trim();
+        cpf = cpf || (j2.cpf || "").trim();
       }catch(e){}
-
-      if(!nome || !cpf){
-        try{
-          const j2 = JSON.parse(localStorage.getItem("leadResumo") || "{}");
-          nome = nome || (j2.nome || "").trim();
-          cpf = cpf || (j2.cpf || "").trim();
-        }catch(e){}
-      }
-
-      $("#leadNome").textContent = nome || "Cliente";
-      $("#leadCpf").textContent = cpf ? maskCpf(cpf) : "—";
     }
 
-    const btnProfile = document.getElementById("btnProfile");
-    const btnCart = document.getElementById("btnCart");
+    $("#leadNome").textContent = nome || "Cliente";
+    $("#leadCpf").textContent = cpf ? maskCpf(cpf) : "—";
+  }
 
-    btnProfile && btnProfile.addEventListener("click", ()=>{
-      loadLead();
-      openOverlay("profileOverlay");
+  const btnProfile = document.getElementById("btnProfile");
+  const btnCart = document.getElementById("btnCart");
+
+  btnProfile && btnProfile.addEventListener("click", ()=>{
+    loadLead();
+    openOverlay("profileOverlay");
+  });
+
+  btnCart && btnCart.addEventListener("click", ()=>{
+    openOverlay("cartOverlay");
+  });
+
+  // ====== Trilha sonora (corrigido)
+  (function(){
+    const trilha = document.getElementById("trilha");
+    if (!trilha) return;
+
+    trilha.volume = 0.05;
+    trilha.preload = "auto";
+
+    let started = false;
+
+    async function playAudio(){
+      if (started) return;
+      try{
+        await trilha.play();
+        started = true;
+      }catch(e){}
+    }
+
+    // tenta tocar quando a página carrega
+    document.addEventListener("DOMContentLoaded", () => {
+      playAudio();
     });
 
-    btnCart && btnCart.addEventListener("click", ()=>{
-      openOverlay("cartOverlay");
-    });
+    // desbloqueia em qualquer interação (autoplay policy)
+    const unlockEvents = ["click","touchstart","keydown"];
+    const unlock = () => {
+      playAudio();
+      unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, true));
+    };
+    unlockEvents.forEach(ev => window.addEventListener(ev, unlock, true));
+  })();
+</script>
 
-    function(){
-      const trilha = document.getElementById("trilha");
-      if (!trilha) return;
-
-      trilha.volume = 0.05;
-      let started = false;
-
-      async function playAudio(){
-        if (started) return;
-        try{ await trilha.play(); started = true; } catch(e){}
-      }
-
-      document.addEventListener("DOMContentLoaded", playAudio);
-
-      const unlockEvents = ["click","touchstart","keydown","scroll","mousemove"];
-      const unlock = () => {
-        playAudio();
-        unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, { passive:true }));
-      };
-      unlockEvents.forEach(ev => window.addEventListener(ev, unlock, { passive:true }));
-    })();
-    
-  </script>
 
   <script src="/resgate/js/bootstrap.bundle.min.js" crossorigin="anonymous" type="c36a8d385844ef1da01080ac-text/javascript"></script>
   <script src="/resgate/js/rocket-loader.min.js" data-cf-settings="c36a8d385844ef1da01080ac-|49" defer></script>
