@@ -795,12 +795,6 @@
 
 <body>
 
-  <!-- ✅ ÁUDIO DE FUNDO -->
-  <audio id="trilha" loop>
-    <source src="/resgate/media/musica.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
-
   <!-- HEADER -->
   <div class="topbar-mini">Frete grátis (Brasil) a partir de R$ 79,00</div>
 
@@ -1669,36 +1663,7 @@
       openOverlay("cartOverlay");
     });
 
-    // ====== Trilha sonora (corrigido)
-    (function(){
-      const trilha = document.getElementById("trilha");
-      if (!trilha) return;
-
-      trilha.volume = 0.05;
-      trilha.preload = "auto";
-
-      let started = false;
-
-      async function playAudio(){
-        if (started) return;
-        try{
-          await trilha.play();
-          started = true;
-        }catch(e){}
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        playAudio();
-      });
-
-      const unlockEvents = ["click","touchstart","keydown"];
-      const unlock = () => {
-        playAudio();
-        unlockEvents.forEach(ev => window.removeEventListener(ev, unlock, true));
-      };
-      unlockEvents.forEach(ev => window.addEventListener(ev, unlock, true));
-    })();
-  </script>
+   
 
   <script src="/resgate/js/bootstrap.bundle.min.js" crossorigin="anonymous" type="c36a8d385844ef1da01080ac-text/javascript"></script>
   <script src="/resgate/js/rocket-loader.min.js" data-cf-settings="c36a8d385844ef1da01080ac-|49" defer></script>
